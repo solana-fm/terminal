@@ -84,7 +84,7 @@ const Index = ({
   return (
     <div className={classNames('mt-4 space-y-4 border border-white/5 rounded-xl p-3', containerClassName)}>
       <div className="flex items-center justify-between text-xs">
-        <div className="text-white/30">{<span>Rate</span>}</div>
+        <div className="text-grey-400">{<span>Rate</span>}</div>
         {JSBI.greaterThan(rateParams.inAmount, ZERO) && JSBI.greaterThan(rateParams.outAmount, ZERO) ? (
           <ExchangeRate
             loading={loading}
@@ -94,22 +94,22 @@ const Index = ({
             reversible={true}
           />
         ) : (
-          <span className="text-white/30">{'-'}</span>
+          <span className="dark:text-grey-50 text-grey-700">{'-'}</span>
         )}
       </div>
 
-      <div className="flex items-center justify-between text-xs text-white/30">
+      <div className="flex items-center justify-between text-xs">
         <div>
-          <span>Price Impact</span>
+          <span className="text-grey-400">Price Impact</span>
         </div>
-        <div>{priceImpactText}</div>
+        <div className="dark:text-grey-50 text-grey-700">{priceImpactText}</div>
       </div>
 
       <div className="flex items-center justify-between text-xs">
-        <div className="text-white/30">
+        <div className="text-grey-400">
           {quoteResponse?.swapMode === SwapMode.ExactIn ? <span>Minimum Received</span> : <span>Maximum Consumed</span>}
         </div>
-        <div className="text-white/30">{otherAmountThresholdText}</div>
+        <div className="dark:text-grey-50 text-grey-700">{otherAmountThresholdText}</div>
       </div>
 
       {showFullDetails ? (
@@ -126,8 +126,8 @@ const Index = ({
 
           {priorityFee > 0 ? (
             <div className="flex items-center justify-between text-xs">
-              <div className="text-white/30">Max Priority Fee</div>
-              <div className="text-white/30">{priorityFee} SOL</div>
+              <div className="text-grey-400">Max Priority Fee</div>
+              <div className="dark:text-grey-50 text-grey-700">{priorityFee} SOL</div>
             </div>
           ) : null}
         </>

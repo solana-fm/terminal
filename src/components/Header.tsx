@@ -30,13 +30,13 @@ const Header: React.FC<{ setIsWalletModalOpen(toggle: boolean): void }> = ({ set
       <div className="w-full flex items-center justify-between ">
         <a href={jupiterDirectLink} target={'_blank'} rel="noreferrer noopener" className="flex items-center space-x-2">
           <JupiterLogo width={24} height={24} />
-          <span className="font-bold text-sm text-white">Jupiter</span>
+          <span className="font-bold text-sm dark:text-grey-50 text-grey-700">Jupiter</span>
         </a>
 
         <div className="flex space-x-1 items-center">
           <button
             type="button"
-            className="p-2 h-7 w-7 flex items-center justify-center border rounded-full border-white/10 bg-black/10 text-white/30 fill-current"
+            className="p-2 h-7 w-7 flex items-center justify-center border dark:border-navy-600 border-navy-50 dark:bg-dark-800 bg-light-200 dark:hover:bg-black/30 hover:bg-white/50 rounded-full fill-current"
             onClick={refresh}
           >
             <RefreshSVG />
@@ -44,11 +44,11 @@ const Header: React.FC<{ setIsWalletModalOpen(toggle: boolean): void }> = ({ set
 
           <button
             type="button"
-            className="p-2 h-7 space-x-1 flex items-center justify-center border rounded-2xl border-white/10 bg-black/10 text-white/30 fill-current"
+            className="p-2 h-7 space-x-1 flex items-center justify-center border dark:border-navy-600 border-navy-50 dark:bg-dark-800 bg-light-200 dark:hover:bg-black/30 hover:bg-white/50 rounded-2xl fill-current"
             onClick={() => setShowSlippageSetting(true)}
           >
             <SettingsSVG />
-            <span suppressHydrationWarning className="text-xs text-white-30">
+            <span suppressHydrationWarning className="text-xs text-grey-400">
               {slippageText}%
             </span>
           </button>

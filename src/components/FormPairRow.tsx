@@ -35,7 +35,7 @@ const FormPairRow: React.FC<{
       translate="no"
     >
       <div
-        className="flex items-center rounded-xl space-x-4 my-2 p-3 justify-between bg-v2-lily/10 hover:bg-v2-lily/5"
+        className="flex items-center rounded-xl space-x-4 my-2 p-3 justify-between dark:bg-navy-700 bg-light-100 dark:hover:bg-navy-600 hover:bg-light-400"
         onClick={() => onSubmit(item)}
       >
         <div className="flex-shrink-0">
@@ -46,7 +46,7 @@ const FormPairRow: React.FC<{
 
         <div className="flex-1 min-w-0">
           <div className='flex flex-row space-x-2'>
-            <p className="text-sm text-white truncate">
+            <p className="text-sm dark:text-grey-50 text-grey-700 truncate">
               {item.symbol}
             </p>
             <TokenLink tokenInfo={item} />

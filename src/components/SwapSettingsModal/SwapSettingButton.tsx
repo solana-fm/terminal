@@ -20,7 +20,7 @@ const SwapSettingButton = ({
   roundBorder,
   children,
 }: ISwapSettingButton) => {
-  const classes = `relative flex-1 py-4 px-1 text-white/50 bg-[#1B1B1E]`;
+  const classes = `relative flex-1 py-4 px-1 text-white/50 dark:bg-navy-700 bg-light-100`;
   const roundBorderClass = (() => {
     if (roundBorder === 'left') return 'rounded-l-xl';
     if (roundBorder === 'right') return 'rounded-r-xl';
@@ -28,7 +28,7 @@ const SwapSettingButton = ({
   })();
 
   const borderClassName = useMemo(() => {
-    if (idx > 0 && idx < itemsCount) return 'border-l border-white/10';
+    if (idx > 0 && idx < itemsCount) return 'border-l dark:border-navy-600 border-navy-50';
   }, [idx, itemsCount]);
 
   return (
@@ -37,13 +37,13 @@ const SwapSettingButton = ({
       className={classNames(
         '!h-[42px] relative border border-transparent',
         borderClassName,
-        highlighted ? ` ${roundBorderClass} !border-v3-primary` : '',
+        highlighted ? ` ${roundBorderClass} !border-purple-500` : '',
         classes,
         className,
       )}
       onClick={onClick}
     >
-      <div className={`h-full w-full leading-none flex justify-center items-center`}>{children}</div>
+      <div className={`h-full w-full leading-none flex justify-center items-center dark:text-grey-50 text-grey-700`}>{children}</div>
     </button>
   );
 };
