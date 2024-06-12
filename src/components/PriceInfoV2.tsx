@@ -116,7 +116,7 @@ const PriceInfoV2 = ({
                 <div className="text-grey-400">
                     {quoteResponse?.swapMode === SwapMode.ExactIn ? <span>Minimum Received</span> : <span>Maximum Consumed</span>}
                 </div>
-                {loading ? (
+                {loading && form.fromValue ? (
                     <Skeleton className="w-[80px] h-4" />
                 ) : (
                     <div className="dark:text-grey-50 text-grey-700">

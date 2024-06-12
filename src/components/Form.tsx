@@ -287,7 +287,7 @@ const Form: React.FC<{
 
                     <div className="text-right">
                       {
-                        loading ? (
+                        loading && form.fromValue ? (
                           <Skeleton className="w-[120px] h-5" />
                         ) : (
                           <NumericFormat
@@ -320,7 +320,7 @@ const Form: React.FC<{
                         <CoinBalance mintAddress={toTokenInfo.address} />
                         <span>{toTokenInfo.symbol}</span>
                       </div>
-                      {loading ? (
+                      {loading && form.fromValue ? (
                         <Skeleton className="w-[60px] h-4" />
                       ) : form.fromValue && form.toValue ? (
                         <span className="text-xs dark:text-grey-50 text-grey-700 ">
