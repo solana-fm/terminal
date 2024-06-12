@@ -211,14 +211,23 @@ export const SwapContextProvider: FC<{
   const jupiterParams: UseJupiterProps = useMemo(() => {
     const amount = (() => {
       if (jupiterSwapMode === SwapMode.ExactOut) {
-        if (!form.toValue || !toTokenInfo || !hasNumericValue(form.toValue)) return JSBI.BigInt(0);
+        // if (!form.toValue || !toTokenInfo || !hasNumericValue(form.toValue)) return JSBI.BigInt(0);
+
+        // make default values to 1
+        if (!toTokenInfo) return JSBI.BigInt(0);
+        if (!form.toValue || !hasNumericValue(form.toValue)) return JSBI.BigInt(new Decimal(1).mul(10 ** toTokenInfo.decimals));
+
         return JSBI.BigInt(new Decimal(form.toValue).mul(10 ** toTokenInfo.decimals));
       } else {
-        if (!form.fromValue || !fromTokenInfo || !hasNumericValue(form.fromValue)) return JSBI.BigInt(0);
+        // if (!form.fromValue || !fromTokenInfo || !hasNumericValue(form.fromValue)) return JSBI.BigInt(0);
+
+        // make default values to 1
+        if (!fromTokenInfo) return JSBI.BigInt(0);
+        if (!form.fromValue || !hasNumericValue(form.fromValue)) return JSBI.BigInt(new Decimal(1).mul(10 ** fromTokenInfo.decimals));
+
         return JSBI.BigInt(new Decimal(form.fromValue).mul(10 ** fromTokenInfo.decimals));
       }
     })();
-
     return {
       amount,
       inputMint: form.fromMint ? new PublicKey(form.fromMint) : undefined,

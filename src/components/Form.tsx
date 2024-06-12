@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useEffect, useMemo } from 'react';
+import { MouseEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { NumberFormatValues, NumericFormat } from 'react-number-format';
 
 import { useAccounts } from '../contexts/accounts';
@@ -26,6 +26,8 @@ import PriceInfo from './PriceInfo/index';
 import V2SexyChameleonText from './SexyChameleonText/V2SexyChameleonText';
 import SwitchPairButton from './SwitchPairButton';
 import useTimeDiff from './useTimeDiff/useTimeDiff';
+import { Skeleton } from './Skeleton';
+import PriceInfoV2 from './PriceInfoV2';
 
 const Form: React.FC<{
   onSubmit: () => void;
@@ -46,6 +48,8 @@ const Form: React.FC<{
     jupiter: { quoteResponseMeta: route, loading, error, refresh },
   } = useSwapContext();
   const [hasExpired, timeDiff] = useTimeDiff();
+  const [inputFromFocus, setInputFromFocus] = useState<boolean>(false);
+  const [inputToFocus, setInputToFocus] = useState<boolean>(false);
   useEffect(() => {
     if (hasExpired) {
       refresh();
@@ -170,7 +174,7 @@ const Form: React.FC<{
         <div className="flex-col">
           <div
             className={classNames(
-              'border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl transition-all',
+              `border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl transition-all  border ${inputFromFocus ? "!border-purple-500 shadow-[0px_0px_10px_2px] shadow-purple-500/50" : ""}`,
               fixedOutputFomMintClass,
             )}
           >
@@ -206,6 +210,8 @@ const Form: React.FC<{
                         allowNegative={false}
                         valueIsNumericString
                         onValueChange={({ value }) => onChangeFromValue(value)}
+                        onFocus={() => setInputFromFocus(true)}
+                        onBlur={() => setInputFromFocus(false)}
                         placeholder={'0.00'}
                         className={classNames(
                           'h-full w-full bg-transparent dark:text-grey-50 text-grey-700 text-right font-semibold text-lg',
@@ -254,7 +260,7 @@ const Form: React.FC<{
             )}
           </div>
 
-          <div className="border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl">
+          <div className={`border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl  border ${inputToFocus ? "!border-purple-500 shadow-[0px_0px_10px_2px]  shadow-purple-500/50" : ""}`}>
             <div className="px-x border-transparent rounded-xl">
               <div>
                 <div className="py-5 px-4 flex flex-col dark:text-white">
@@ -280,21 +286,30 @@ const Form: React.FC<{
                     </button>
 
                     <div className="text-right">
-                      <NumericFormat
-                        disabled={!swapMode || swapMode === 'ExactIn'}
-                        value={typeof form.toValue === 'undefined' ? '' : form.toValue}
-                        decimalScale={toTokenInfo?.decimals}
-                        thousandSeparator={thousandSeparator}
-                        allowNegative={false}
-                        valueIsNumericString
-                        onValueChange={({ value }) => onChangeToValue(value)}
-                        placeholder={swapMode === 'ExactOut' ? 'Enter desired amount' : ''}
-                        className={classNames(
-                          'h-full w-full bg-transparent dark:text-grey-50 text-grey-700 text-right font-semibold  placeholder:text-sm placeholder:font-normal text-lg',
-                        )}
-                        decimalSeparator={detectedSeparator}
-                        isAllowed={withValueLimit}
-                      />
+                      {
+                        loading ? (
+                          <Skeleton className="w-[120px] h-5" />
+                        ) : (
+                          <NumericFormat
+                            disabled={!swapMode || swapMode === 'ExactIn'}
+                            // value={typeof form.toValue === 'undefined' ? '' : form.toValue}
+                            value={typeof form.toValue === 'undefined' || (!form.fromValue && Number(form.fromValue) === 0) ? '' : form.toValue}
+                            decimalScale={toTokenInfo?.decimals}
+                            thousandSeparator={thousandSeparator}
+                            allowNegative={false}
+                            valueIsNumericString
+                            onValueChange={({ value }) => onChangeToValue(value)}
+                            onFocus={() => setInputToFocus(true)}
+                            onBlur={() => setInputToFocus(false)}
+                            placeholder={swapMode === 'ExactOut' ? 'Enter desired amount' : ''}
+                            className={classNames(
+                              'h-full w-full bg-transparent dark:text-grey-50 text-grey-700 text-right font-semibold  placeholder:text-sm placeholder:font-normal text-lg',
+                            )}
+                            decimalSeparator={detectedSeparator}
+                            isAllowed={withValueLimit}
+                          />
+                        )
+                      }
                     </div>
                   </div>
 
@@ -305,8 +320,9 @@ const Form: React.FC<{
                         <CoinBalance mintAddress={toTokenInfo.address} />
                         <span>{toTokenInfo.symbol}</span>
                       </div>
-
-                      {form.toValue ? (
+                      {loading ? (
+                        <Skeleton className="w-[60px] h-4" />
+                      ) : form.fromValue && form.toValue ? (
                         <span className="text-xs dark:text-grey-50 text-grey-700 ">
                           <CoinBalanceUSD tokenInfo={toTokenInfo} amount={form.toValue} />
                         </span>
@@ -318,7 +334,9 @@ const Form: React.FC<{
             </div>
           </div>
 
-          {route?.quoteResponse ? (
+          {loading ? (
+            <Skeleton className="w-[250px] h-5 mt-2" />
+          ) : route?.quoteResponse ? (
             <div className="flex items-center mt-2 text-xs space-x-1">
               <div className="dark:bg-dark-500 bg-light-500 rounded-xl px-2 py-1 dark:text-white/50 text-white flex items-center space-x-1">
                 <RoutesSVG width={7} height={9} />
@@ -353,18 +371,20 @@ const Form: React.FC<{
             disabled={isDisabled || loading}
           >
             {loading ? (
-              <span className="text-sm">Loading...</span>
+              <span className="text-sm text-purple-50">Loading...</span>
             ) : error ? (
-              <span className="text-sm">Error fetching route. Try changing your input</span>
+              <span className="text-sm text-purple-50">Error fetching route. Try changing your input</span>
             ) : (
               <span className='text-purple-50'>Swap</span>
             )}
           </JupButton>
         )}
 
-        {route && quoteResponseMeta && fromTokenInfo && toTokenInfo ? (
-          <PriceInfo
-            quoteResponse={quoteResponseMeta.quoteResponse}
+        {/* refactored SFM version */}
+        {/* will do checking directly inside */}
+        {fromTokenInfo && toTokenInfo ? (
+          <PriceInfoV2
+            quoteResponse={quoteResponseMeta?.quoteResponse}
             fromTokenInfo={fromTokenInfo}
             toTokenInfo={toTokenInfo}
             loading={loading}
