@@ -4,13 +4,16 @@ import { useWalletPassThrough } from 'src/contexts/WalletPassthroughProvider';
 export const WalletModalButton: FC<{ setIsWalletModalOpen(toggle: boolean): void }> = ({ setIsWalletModalOpen }) => {
   const { connecting } = useWalletPassThrough();
 
-  const handleClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
-    if (window.Jupiter.enableWalletPassthrough && window.Jupiter.onRequestConnectWallet) {
-      window.Jupiter.onRequestConnectWallet();
-    } else { 
-      setIsWalletModalOpen(true);
-    }
-  }, [setIsWalletModalOpen]);
+  const handleClick = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      if (window.SFMTerminal.enableWalletPassthrough && window.SFMTerminal.onRequestConnectWallet) {
+        window.SFMTerminal.onRequestConnectWallet();
+      } else {
+        setIsWalletModalOpen(true);
+      }
+    },
+    [setIsWalletModalOpen],
+  );
 
   return (
     <button

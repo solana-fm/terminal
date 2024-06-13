@@ -69,16 +69,16 @@ const SwappingScreen = () => {
     if (lastSwapResult?.swapResult && 'error' in lastSwapResult?.swapResult) {
       setErrorMessage(lastSwapResult?.swapResult?.error?.message || '');
 
-      if (window.Jupiter.onSwapError) {
-        window.Jupiter.onSwapError({
+      if (window.SFMTerminal.onSwapError) {
+        window.SFMTerminal.onSwapError({
           error: lastSwapResult?.swapResult?.error,
           quoteResponseMeta: lastSwapResult?.quoteResponseMeta,
         });
       }
       return;
     } else if (lastSwapResult?.swapResult && 'txid' in lastSwapResult?.swapResult) {
-      if (window.Jupiter.onSuccess) {
-        window.Jupiter.onSuccess({
+      if (window.SFMTerminal.onSuccess) {
+        window.SFMTerminal.onSuccess({
           txid: lastSwapResult?.swapResult?.txid,
           swapResult: lastSwapResult?.swapResult,
           quoteResponseMeta: lastSwapResult?.quoteResponseMeta,
@@ -90,7 +90,7 @@ const SwappingScreen = () => {
 
   const onClose = () => {
     if (!displayMode || displayMode === 'modal') {
-      window.Jupiter.close();
+      window.SFMTerminal.close();
     }
 
     reset();

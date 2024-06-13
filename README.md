@@ -80,7 +80,7 @@ Terminal is designed to work anywhere the web runs, including React, Plain HTML/
 Your dApp already has a `<WalletProvider />`.
 
 ```tsx
-window.Jupiter.init({ enableWalletPassthrough: true });
+window.SFMTerminal.init({ enableWalletPassthrough: true });
 ```
 
 Then, syncronise wallet state between your dApp and Jupiter Terminal with `syncProps()`
@@ -90,8 +90,8 @@ import { useWallet } from '@solana/wallet-adapter-react'; // Or @jup-ag/wallet-a
 
 const passthroughWalletContextState = useWallet();
 useEffect(() => {
-  if (!window.Jupiter.syncProps) return;
-  window.Jupiter.syncProps({ passthroughWalletContextState });
+  if (!window.SFMTerminal.syncProps) return;
+  window.SFMTerminal.syncProps({ passthroughWalletContextState });
 }, [passthroughWalletContextState.connected, props]);
 ```
 
@@ -100,13 +100,13 @@ useEffect(() => {
 Your dApp does not have a `<WalletProvider />`, or is a plain HTML/JS website.
 
 ```tsx
-window.Jupiter.init({});
+window.SFMTerminal.init({});
 ```
 
 ### 3. Setup other props
 
 ```tsx
-window.Jupiter.init({
+window.SFMTerminal.init({
   /** Required
    * Solana RPC endpoint
    * We do not recommend using the public RPC endpoint for production dApp, you will get severely rate-limited
@@ -162,32 +162,34 @@ Refer to [Adding your own fees](https://docs.jup.ag/docs/apis/adding-fees) docs 
 _Note: You will need to create the Token fee accounts to collect the platform fee._
 
 #### By referral key `referralAccount` (easiest)
+
 ```tsx
 const TEST_PLATFORM_FEE_AND_ACCOUNTS = {
   referralAccount: '2XEYFwLBkLUxkQx5ZpFAAMzWhQxS4A9QzjhcPhUwhfwy',
   feeBps: 100,
 };
 
-window.Jupiter.init({
+window.SFMTerminal.init({
   // ...
   platformFeeAndAccounts: TEST_PLATFORM_FEE_AND_ACCOUNTS,
-})
+});
 ```
 
-
 #### By defined fee accounts
-Alternatively, you can derive yourself the fee accounts via 
+
+Alternatively, you can derive yourself the fee accounts via
 [Set your fee token account](https://docs.jup.ag/docs/apis/adding-fees#3-set-your-fee-token-account) and declare them like so:
+
 ```tsx
 const TEST_PLATFORM_FEE_AND_ACCOUNTS = {
   feeBps: 100,
   feeAccounts,
 };
 
-window.Jupiter.init({
+window.SFMTerminal.init({
   // ...
   platformFeeAndAccounts: TEST_PLATFORM_FEE_AND_ACCOUNTS,
-})
+});
 ```
 
 ---
@@ -201,11 +203,11 @@ window.Jupiter.init({
 - `close()` function only hide the widget.
 
 ```tsx
-if (window.Jupiter._instance) {
-  window.Jupiter.resume();
+if (window.SFMTerminal._instance) {
+  window.SFMTerminal.resume();
 }
 
-window.Jupiter.close();
+window.SFMTerminal.close();
 ```
 
 ### Strict Token List
@@ -236,7 +238,7 @@ You can change the default explorer by passing in the explorer name to the `defa
 Callbacks that may be useful for your dApp, from form updates, to swap success/error.
 
 ```tsx
-window.Jupiter.init({
+window.SFMTerminal.init({
   /** Callbacks */
   /** When an error has occured during swap */
   onSwapError ({ error, quoteResponseMeta }: { error TransactionError; quoteResponseMeta: QuoteResponseMeta | null }) {}
@@ -246,7 +248,7 @@ window.Jupiter.init({
   onFormUpdate (form: IForm) {}
   /** Callback when there's changes to the screen */
   onScreenUpdate (screen: IScreen) {}
-  
+
   /** Advanced usage */
   /** onRequestIxCallback(), refer to dedicated section below */
 });
@@ -261,7 +263,7 @@ Examples:
 - Custom zIndex
 
 ```tsx
-window.Jupiter.init({
+window.SFMTerminal.init({
   // ...
   containerStyles: { zIndex: 100 },
 });
@@ -270,7 +272,7 @@ window.Jupiter.init({
 - Custom height
 
 ```tsx
-window.Jupiter.init({
+window.SFMTerminal.init({
   // ...
   containerStyles: { maxHeight: '90vh' },
 });
@@ -285,7 +287,7 @@ Example:
 - Custom breakpoints
 
 ```tsx
-window.Jupiter.init({
+window.SFMTerminal.init({
   // ...
   containerClassName: 'max-h-[90vh] lg:max-h-[600px]',
 });

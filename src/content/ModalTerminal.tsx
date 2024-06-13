@@ -17,7 +17,7 @@ const ModalTerminal = (props: {
   const { setShowModal } = useUnifiedWalletContext();
 
   const launchTerminal = () => {
-    window.Jupiter.init({
+    window.SFMTerminal.init({
       endpoint: rpcUrl,
       formProps,
       enableWalletPassthrough: simulateWalletPassthrough,
@@ -31,8 +31,8 @@ const ModalTerminal = (props: {
 
   // To make sure passthrough wallet are synced
   useEffect(() => {
-    if (!window.Jupiter.syncProps) return;
-    window.Jupiter.syncProps({ passthroughWalletContextState });
+    if (!window.SFMTerminal.syncProps) return;
+    window.SFMTerminal.syncProps({ passthroughWalletContextState });
   }, [passthroughWalletContextState, props]);
 
   return (

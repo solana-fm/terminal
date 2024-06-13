@@ -45,7 +45,7 @@ const WalletContextProvider: React.FC<PropsWithChildren<IInit>> = ({ autoConnect
 
   const enableWalletPassthrough = (() => {
     if (typeof window === 'undefined') return undefined;
-    return window.Jupiter.enableWalletPassthrough;
+    return window.SFMTerminal.enableWalletPassthrough;
   })();
 
   const wallets = useMemo(() => {
@@ -99,7 +99,12 @@ const WalletContextProvider: React.FC<PropsWithChildren<IInit>> = ({ autoConnect
                       <p className="space-y-1">
                         {walletName} is not installed.
                         <p className="space-x-1">
-                          <a className="underline font-semibold" target="_blank" rel="noopener noreferrer" href={metadata.url}>
+                          <a
+                            className="underline font-semibold"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={metadata.url}
+                          >
                             Visit {walletName} website
                           </a>
                           <span>to install it.</span>
@@ -107,7 +112,7 @@ const WalletContextProvider: React.FC<PropsWithChildren<IInit>> = ({ autoConnect
                       </p>
                     ),
                   });
-          
+
                   setTimeout(() => {
                     setShowWalletStatus({
                       show: false,
@@ -116,7 +121,7 @@ const WalletContextProvider: React.FC<PropsWithChildren<IInit>> = ({ autoConnect
                   }, 5_000);
                 },
               },
-              theme: 'jupiter'
+              theme: 'jupiter',
             }}
           >
             {children}

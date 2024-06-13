@@ -28,12 +28,12 @@ const ConfirmationScreen = () => {
   const onSubmit = useCallback(async () => {
     setScreen('Swapping');
 
-    if (window.Jupiter.onRequestIxCallback) {
-      const ixAndCb = await onRequestIx()
+    if (window.SFMTerminal.onRequestIxCallback) {
+      const ixAndCb = await onRequestIx();
       if (ixAndCb) {
-        window.Jupiter.onRequestIxCallback(ixAndCb)
+        window.SFMTerminal.onRequestIxCallback(ixAndCb);
       } else {
-        setScreen('Error')
+        setScreen('Error');
       }
     } else {
       onSubmitJupiter();

@@ -503,15 +503,15 @@ export const SwapContextProvider: FC<{
 
   // onFormUpdate callback
   useEffect(() => {
-    if (typeof window.Jupiter.onFormUpdate === 'function') {
-      window.Jupiter.onFormUpdate(form);
+    if (typeof window.SFMTerminal.onFormUpdate === 'function') {
+      window.SFMTerminal.onFormUpdate(form);
     }
   }, [form]);
 
   // onFormUpdate callback
   useEffect(() => {
-    if (typeof window.Jupiter.onScreenUpdate === 'function') {
-      window.Jupiter.onScreenUpdate(screen);
+    if (typeof window.SFMTerminal.onScreenUpdate === 'function') {
+      window.SFMTerminal.onScreenUpdate(screen);
     }
   }, [screen]);
 

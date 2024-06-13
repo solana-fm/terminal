@@ -50,7 +50,7 @@ const Form: React.FC<{
     if (hasExpired) {
       refresh();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasExpired]);
 
   const walletPublicKey = useMemo(() => publicKey?.toString(), [publicKey]);
@@ -153,13 +153,16 @@ const Form: React.FC<{
     [],
   );
 
-  const handleClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
-    if (window.Jupiter.enableWalletPassthrough && window.Jupiter.onRequestConnectWallet) {
-      window.Jupiter.onRequestConnectWallet();
-    } else {
-      setIsWalletModalOpen(true);
-    }
-  }, [setIsWalletModalOpen]);
+  const handleClick = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      if (window.SFMTerminal.enableWalletPassthrough && window.SFMTerminal.onRequestConnectWallet) {
+        window.SFMTerminal.onRequestConnectWallet();
+      } else {
+        setIsWalletModalOpen(true);
+      }
+    },
+    [setIsWalletModalOpen],
+  );
 
   return (
     <div className="h-full flex flex-col items-center justify-center pb-4">
