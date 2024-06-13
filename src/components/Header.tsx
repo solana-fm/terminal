@@ -53,7 +53,8 @@ const Header: React.FC<{ setIsWalletModalOpen(toggle: boolean): void }> = ({ set
             </span>
           </button>
 
-          <WalletButton setIsWalletModalOpen={setIsWalletModalOpen} />
+          {/* remove for sfm ui */}
+          {/* <WalletButton setIsWalletModalOpen={setIsWalletModalOpen} /> */}
         </div>
       </div>
 
