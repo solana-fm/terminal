@@ -303,7 +303,7 @@ const Form: React.FC<{
                             onBlur={() => setInputToFocus(false)}
                             placeholder={swapMode === 'ExactOut' ? 'Enter desired amount' : ''}
                             className={classNames(
-                              'h-full w-full bg-transparent dark:text-grey-50 text-grey-700 text-right font-semibold  placeholder:text-sm placeholder:font-normal text-lg',
+                              'h-full w-full bg-transparent dark:text-grey-50 text-grey-700 text-right font-semibold placeholder:text-sm placeholder:font-normal text-lg',
                             )}
                             decimalSeparator={detectedSeparator}
                             isAllowed={withValueLimit}

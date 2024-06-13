@@ -36,7 +36,7 @@ const Header: React.FC<{ setIsWalletModalOpen(toggle: boolean): void }> = ({ set
         <div className="flex space-x-1 items-center">
           <button
             type="button"
-            className="p-2 h-7 w-7 flex items-center justify-center border dark:border-navy-600 border-navy-50 dark:bg-dark-800 bg-light-200 dark:hover:bg-black/30 hover:bg-white/50 rounded-full fill-current"
+            className="p-2 h-7 w-7 flex items-center justify-center border dark:border-navy-600 border-navy-50 dark:bg-dark-800 bg-light-200 group dark:hover:!border-purple-500/80 hover:!border-purple-300/80 rounded-full fill-current"
             onClick={refresh}
           >
             <RefreshSVG />
@@ -44,11 +44,11 @@ const Header: React.FC<{ setIsWalletModalOpen(toggle: boolean): void }> = ({ set
 
           <button
             type="button"
-            className="p-2 h-7 space-x-1 flex items-center justify-center border dark:border-navy-600 border-navy-50 dark:bg-dark-800 bg-light-200 dark:hover:bg-black/30 hover:bg-white/50 rounded-2xl fill-current"
+            className="p-2 h-7 space-x-1 flex items-center justify-center border dark:border-navy-600 border-navy-50 dark:bg-dark-800 bg-light-200 group dark:hover:!border-purple-500/80 hover:!border-purple-300/80 rounded-2xl fill-current"
             onClick={() => setShowSlippageSetting(true)}
           >
             <SettingsSVG />
-            <span suppressHydrationWarning className="text-xs text-grey-400">
+            <span suppressHydrationWarning className="text-xs text-grey-400 group-hover:!text-purple-500">
               {slippageText}%
             </span>
           </button>

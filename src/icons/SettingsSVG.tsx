@@ -1,6 +1,6 @@
 const SettingsSVG: React.FC<React.SVGAttributes<SVGElement>> = ({ width = '12', height = '12' }) => {
   return (
-    <svg width={width} height={height} viewBox="0 0 12 10" fill="grey" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} viewBox="0 0 12 10" fill="grey" xmlns="http://www.w3.org/2000/svg" className="group-hover:!stroke-purple-500/60">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
