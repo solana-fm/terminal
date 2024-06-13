@@ -27,11 +27,11 @@ const Header: React.FC<{ setIsWalletModalOpen(toggle: boolean): void }> = ({ set
 
   return (
     <div className="mt-2 h-7 pl-3 pr-2">
-      <div className="w-full flex items-center justify-between ">
-        <a href={jupiterDirectLink} target={'_blank'} rel="noreferrer noopener" className="flex items-center space-x-2">
+      <div className="w-full flex items-center justify-end">
+        {/* <a href={jupiterDirectLink} target={'_blank'} rel="noreferrer noopener" className="flex items-center space-x-2">
           <JupiterLogo width={24} height={24} />
           <span className="font-bold text-sm dark:text-grey-50 text-grey-700">Jupiter</span>
-        </a>
+        </a> */}
 
         <div className="flex space-x-1 items-center">
           <button
