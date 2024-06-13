@@ -28,10 +28,10 @@ const PlatformFees = ({ platformFee, tokenInfo }: PlatformFeesInfo & { tokenInfo
 
   return (
     <div className="flex items-center justify-between text-xs">
-      <div className="flex w-[50%] text-white/30">
-        <span>Platform Fee</span>
+      <div className="flex w-[50%]">
+        <span className='text-grey-400'>Platform Fee</span>
       </div>
-      <div className="text-white/30">
+      <div className="dark:text-grey-50 text-grey-700">
         {amountText} {tokenInfo.symbol} ({feeBps})
       </div>
     </div>

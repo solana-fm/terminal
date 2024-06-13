@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useEffect, useMemo } from 'react';
+import { MouseEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { NumberFormatValues, NumericFormat } from 'react-number-format';
 
 import { useAccounts } from '../contexts/accounts';
@@ -26,6 +26,8 @@ import PriceInfo from './PriceInfo/index';
 import V2SexyChameleonText from './SexyChameleonText/V2SexyChameleonText';
 import SwitchPairButton from './SwitchPairButton';
 import useTimeDiff from './useTimeDiff/useTimeDiff';
+import { Skeleton } from './Skeleton';
+import PriceInfoV2 from './PriceInfoV2';
 
 const Form: React.FC<{
   onSubmit: () => void;
@@ -46,6 +48,8 @@ const Form: React.FC<{
     jupiter: { quoteResponseMeta: route, loading, error, refresh },
   } = useSwapContext();
   const [hasExpired, timeDiff] = useTimeDiff();
+  const [inputFromFocus, setInputFromFocus] = useState<boolean>(false);
+  const [inputToFocus, setInputToFocus] = useState<boolean>(false);
   useEffect(() => {
     if (hasExpired) {
       refresh();
@@ -170,7 +174,7 @@ const Form: React.FC<{
         <div className="flex-col">
           <div
             className={classNames(
-              'border-b border-transparent bg-[#212128] rounded-xl transition-all',
+              `border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl transition-all  border ${inputFromFocus ? "dark:!border-purple-500 !border-purple-300/80 shadow-[0px_0px_10px_2px] shadow-purple-500/50" : ""}`,
               fixedOutputFomMintClass,
             )}
           >
@@ -180,7 +184,7 @@ const Form: React.FC<{
                   <div className="flex justify-between items-center">
                     <button
                       type="button"
-                      className="py-2 px-3 rounded-2xl flex items-center bg-[#36373E] hover:bg-white/20 text-white"
+                      className="py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 dark:text-grey-50 text-grey-700 transition duration-200"
                       disabled={fixedInputMint}
                       onClick={onClickSelectFromMint}
                     >
@@ -191,7 +195,7 @@ const Form: React.FC<{
                         {fromTokenInfo?.symbol}
                       </div>
                       {fixedInputMint ? null : (
-                        <span className="text-white/25 fill-current">
+                        <span className="dark:text-grey-50 text-grey-700 dark:group-hover:!text-purple-400 group-hover:!text-purple-300 fill-current transition-color duration-200">
                           <ChevronDownIcon />
                         </span>
                       )}
@@ -206,9 +210,11 @@ const Form: React.FC<{
                         allowNegative={false}
                         valueIsNumericString
                         onValueChange={({ value }) => onChangeFromValue(value)}
+                        onFocus={() => setInputFromFocus(true)}
+                        onBlur={() => setInputFromFocus(false)}
                         placeholder={'0.00'}
                         className={classNames(
-                          'h-full w-full bg-transparent text-white text-right font-semibold text-lg',
+                          'h-full w-full bg-transparent dark:text-grey-50 text-grey-700 text-right font-semibold text-lg',
                           { 'cursor-not-allowed': inputAmountDisabled },
                         )}
                         decimalSeparator={detectedSeparator}
@@ -220,9 +226,12 @@ const Form: React.FC<{
                   {fromTokenInfo?.address ? (
                     <div className="flex justify-between items-center">
                       <div
-                        className={classNames('flex mt-3 space-x-1 text-xs items-center text-white/30 fill-current', {
-                          'cursor-pointer': swapMode !== 'ExactOut',
-                        })}
+                        className={classNames(
+                          'flex mt-3 space-x-1 text-xs items-center dark:text-grey-50 text-grey-700 fill-current',
+                          {
+                            'cursor-pointer': swapMode !== 'ExactOut',
+                          },
+                        )}
                         onClick={onClickMax}
                       >
                         <WalletIcon width={10} height={10} />
@@ -231,7 +240,7 @@ const Form: React.FC<{
                       </div>
 
                       {form.fromValue ? (
-                        <span className="text-xs text-white/30">
+                        <span className="text-xs dark:text-grey-50 text-grey-700">
                           <CoinBalanceUSD tokenInfo={fromTokenInfo} amount={form.fromValue} />
                         </span>
                       ) : null}
@@ -251,14 +260,14 @@ const Form: React.FC<{
             )}
           </div>
 
-          <div className="border-b border-transparent bg-[#212128] rounded-xl">
+          <div className={`border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl  border ${inputToFocus ? "!border-purple-500 !border-purple-300/80 shadow-[0px_0px_10px_2px] shadow-purple-500/50" : ""}`}>
             <div className="px-x border-transparent rounded-xl">
               <div>
                 <div className="py-5 px-4 flex flex-col dark:text-white">
                   <div className="flex justify-between items-center">
                     <button
                       type="button"
-                      className="py-2 px-3 rounded-2xl flex items-center bg-[#36373E] hover:bg-white/20 disabled:hover:bg-[#36373E] text-white"
+                      className="py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 dark:text-grey-50 text-grey-700 transition duration-200"
                       disabled={fixedOutputMint}
                       onClick={onClickSelectToMint}
                     >
@@ -270,41 +279,51 @@ const Form: React.FC<{
                       </div>
 
                       {fixedOutputMint ? null : (
-                        <span className="text-white/25 fill-current">
+                        <span className="dark:text-grey-50 text-grey-700 dark:group-hover:!text-purple-400 group-hover:!text-purple-300 fill-current transition-color duration-200">
                           <ChevronDownIcon />
                         </span>
                       )}
                     </button>
 
                     <div className="text-right">
-                      <NumericFormat
-                        disabled={!swapMode || swapMode === 'ExactIn'}
-                        value={typeof form.toValue === 'undefined' ? '' : form.toValue}
-                        decimalScale={toTokenInfo?.decimals}
-                        thousandSeparator={thousandSeparator}
-                        allowNegative={false}
-                        valueIsNumericString
-                        onValueChange={({ value }) => onChangeToValue(value)}
-                        placeholder={swapMode === 'ExactOut' ? 'Enter desired amount' : ''}
-                        className={classNames(
-                          'h-full w-full bg-transparent text-white text-right font-semibold  placeholder:text-sm placeholder:font-normal text-lg',
-                        )}
-                        decimalSeparator={detectedSeparator}
-                        isAllowed={withValueLimit}
-                      />
+                      {
+                        loading && form.fromValue ? (
+                          <Skeleton className="w-[120px] h-5" />
+                        ) : (
+                          <NumericFormat
+                            disabled={!swapMode || swapMode === 'ExactIn'}
+                            // value={typeof form.toValue === 'undefined' ? '' : form.toValue}
+                            value={typeof form.toValue === 'undefined' || (!form.fromValue && Number(form.fromValue) === 0) ? '' : form.toValue}
+                            decimalScale={toTokenInfo?.decimals}
+                            thousandSeparator={thousandSeparator}
+                            allowNegative={false}
+                            valueIsNumericString
+                            onValueChange={({ value }) => onChangeToValue(value)}
+                            onFocus={() => setInputToFocus(true)}
+                            onBlur={() => setInputToFocus(false)}
+                            placeholder={swapMode === 'ExactOut' ? 'Enter desired amount' : ''}
+                            className={classNames(
+                              'h-full w-full bg-transparent dark:text-grey-50 text-grey-700 text-right font-semibold placeholder:text-sm placeholder:font-normal text-lg',
+                            )}
+                            decimalSeparator={detectedSeparator}
+                            isAllowed={withValueLimit}
+                          />
+                        )
+                      }
                     </div>
                   </div>
 
                   {toTokenInfo?.address ? (
                     <div className="flex justify-between items-center">
-                      <div className="flex mt-3 space-x-1 text-xs items-center text-white/30 fill-current">
+                      <div className="flex mt-3 space-x-1 text-xs items-center dark:text-grey-50 text-grey-700 fill-current">
                         <WalletIcon width={10} height={10} />
                         <CoinBalance mintAddress={toTokenInfo.address} />
                         <span>{toTokenInfo.symbol}</span>
                       </div>
-
-                      {form.toValue ? (
-                        <span className="text-xs text-white/30">
+                      {loading && form.fromValue ? (
+                        <Skeleton className="w-[60px] h-4" />
+                      ) : form.fromValue && form.toValue ? (
+                        <span className="text-xs dark:text-grey-50 text-grey-700 ">
                           <CoinBalanceUSD tokenInfo={toTokenInfo} amount={form.toValue} />
                         </span>
                       ) : null}
@@ -315,13 +334,15 @@ const Form: React.FC<{
             </div>
           </div>
 
-          {route?.quoteResponse ? (
+          {loading ? (
+            <Skeleton className="w-[250px] h-5 mt-2" />
+          ) : route?.quoteResponse ? (
             <div className="flex items-center mt-2 text-xs space-x-1">
-              <div className="bg-black/20 rounded-xl px-2 py-1 text-white/50 flex items-center space-x-1">
+              <div className="dark:bg-dark-500 bg-light-500 rounded-xl px-2 py-1 dark:text-white/50 text-white flex items-center space-x-1">
                 <RoutesSVG width={7} height={9} />
               </div>
-              <span className="text-white/30">using</span>
-              <span className="text-white/50 overflow-hidden whitespace-nowrap text-ellipsis max-w-[70%]">
+              <span className="text-grey-400">using</span>
+              <span className="dark:text-grey-50 text-grey-700 overflow-hidden whitespace-nowrap text-ellipsis max-w-[70%]">
                 {marketRoutes}
               </span>
             </div>
@@ -344,7 +365,7 @@ const Form: React.FC<{
         ) : (
           <JupButton
             size="lg"
-            className="w-full mt-4 disabled:opacity-50"
+            className="w-full mt-4 disabled:opacity-50 text-purple-50"
             type="button"
             onClick={onSubmit}
             disabled={isDisabled || loading}
@@ -352,16 +373,18 @@ const Form: React.FC<{
             {loading ? (
               <span className="text-sm">Loading...</span>
             ) : error ? (
-              <span className="text-sm">Error fetching route. Try changing your input</span>
+              <span className="text-sm ">Error fetching route. Try changing your input</span>
             ) : (
-              <V2SexyChameleonText>Swap</V2SexyChameleonText>
+              <span className=''>Swap</span>
             )}
           </JupButton>
         )}
 
-        {route && quoteResponseMeta && fromTokenInfo && toTokenInfo ? (
-          <PriceInfo
-            quoteResponse={quoteResponseMeta.quoteResponse}
+        {/* refactored SFM version */}
+        {/* will do checking directly inside */}
+        {fromTokenInfo && toTokenInfo ? (
+          <PriceInfoV2
+            quoteResponse={quoteResponseMeta?.quoteResponse}
             fromTokenInfo={fromTokenInfo}
             toTokenInfo={toTokenInfo}
             loading={loading}

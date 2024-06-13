@@ -15,7 +15,7 @@ const Deposits = ({
   if (hasSerumDeposit || hasAtaDeposit) {
     return (
       <div className="flex items-start justify-between text-xs">
-        <div className="flex w-[50%] text-white/30">
+        <div className="flex w-[50%] text-grey-400">
           <span>Deposit</span>
           <Tooltip
             variant="dark"
@@ -53,7 +53,7 @@ const Deposits = ({
             <span className="ml-1 cursor-pointer">[?]</span>
           </Tooltip>
         </div>
-        <div className="w-[50%] text-white/30 text-xs text-right">
+        <div className="w-[50%] dark:text-grey-50 text-grey-700 text-xs text-right">
           {(() => {
             const content = [
               hasAtaDeposit && (

@@ -37,14 +37,14 @@ const Fees = ({ routePlan, swapMode }: IFees) => {
           .toDP(4);
         return (
           <div key={idx} className="flex items-center space-x-4 justify-between text-xs">
-            <div className="text-white/30">
+            <div className="text-grey-400">
               <span>
                 <span>
                   Fees paid to <span translate="no">{item.swapInfo.label}</span> LP
                 </span>
               </span>
             </div>
-            <div className="text-white/30 text-right">
+            <div className="dark:text-grey-50 text-grey-700 text-right">
               {feeAmount} {tokenMint?.symbol} ({formatNumber.format(new Decimal(feePct).mul(100).toNumber())}
               %)
             </div>

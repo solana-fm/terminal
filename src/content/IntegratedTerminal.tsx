@@ -79,9 +79,15 @@ const IntegratedTerminal = (props: {
             </div>
           ) : null}
 
+          {/* <div
+            id="integrated-terminal"
+            className={`flex h-full w-full max-w-[384px] overflow-auto justify-center dark:bg-dark-900 bg-light-50 rounded-xl ${
+              !isLoaded ? 'hidden' : ''
+            }`}
+          /> */}
           <div
             id="integrated-terminal"
-            className={`flex h-full w-full max-w-[384px] overflow-auto justify-center bg-[#282830] rounded-xl ${
+            className={`flex h-full w-full max-w-[384px] overflow-auto justify-center dark:bg-navy-700 bg-light-100 rounded-xl ${
               !isLoaded ? 'hidden' : ''
             }`}
           />

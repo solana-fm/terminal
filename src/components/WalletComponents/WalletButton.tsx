@@ -30,12 +30,12 @@ export const WalletButton: FC<{ setIsWalletModalOpen(toggle: boolean): void }> =
   }
 
   return (
-    <div className="cursor-pointer relative">
+    <div className="relative">
       <div onClick={() => setActive(!active)}>
         <CurrentUserBadge />
       </div>
 
-      {screen === 'Initial' ? (
+      {/* {screen === 'Initial' ? (
         <ul
           aria-label="dropdown-list"
           className={
@@ -50,7 +50,7 @@ export const WalletButton: FC<{ setIsWalletModalOpen(toggle: boolean): void }> =
             <span>Disconnect</span>
           </li>
         </ul>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };

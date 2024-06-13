@@ -3,6 +3,7 @@ import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/do
 class MyDocument extends Document {
   render() {
     return (
+      // <Html className='dark'>
       <Html>
         <Head>
           <meta charSet="utf-8" />

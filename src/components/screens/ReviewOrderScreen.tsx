@@ -43,11 +43,11 @@ const ConfirmationScreen = () => {
   return (
     <div className="flex flex-col h-full w-full py-4 px-2">
       <div className="flex w-full justify-between">
-        <div className="text-white fill-current w-6 h-6 cursor-pointer" onClick={onGoBack}>
+        <div className="dark:text-grey-50 text-grey-700 fill-current w-6 h-6 cursor-pointer" onClick={onGoBack}>
           <LeftArrowIcon width={24} height={24} />
         </div>
 
-        <div className="text-white">Review Order</div>
+        <div className="dark:text-grey-50 text-grey-700">Review Order</div>
 
         <div className=" w-6 h-6" />
       </div>
@@ -60,18 +60,19 @@ const ConfirmationScreen = () => {
             toTokenInfo={toTokenInfo}
             loading={loading}
             showFullDetails
-            containerClassName="bg-[#25252D] border-none"
+            containerClassName="dark:bg-dark-700/70 bg-light-400 border-none"
           />
         ) : null}
       </div>
 
       {hasExpired ? (
         <JupButton size="lg" className="w-full mt-4 disabled:opacity-50 !p-0" type="button" onClick={onGoBack}>
-          <span className="text-sm">Refresh</span>
+          <span className="text-sm dark:text-grey-50 text-grey-700">Refresh</span>
         </JupButton>
       ) : (
         <JupButton size="lg" className="w-full mt-4 disabled:opacity-50" type="button" onClick={onSubmit}>
-          <V2SexyChameleonText>Confirm</V2SexyChameleonText>
+          {/* <V2SexyChameleonText>Confirm</V2SexyChameleonText> */}
+          <span className="text-purple-50">Confirm</span>
         </JupButton>
       )}
     </div>
