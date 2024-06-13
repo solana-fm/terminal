@@ -174,7 +174,7 @@ const Form: React.FC<{
         <div className="flex-col">
           <div
             className={classNames(
-              `border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl transition-all  border ${inputFromFocus ? "!border-purple-500 shadow-[0px_0px_10px_2px] shadow-purple-500/50" : ""}`,
+              `border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl transition-all  border ${inputFromFocus ? "dark:!border-purple-500 !border-purple-300/80 shadow-[0px_0px_10px_2px] shadow-purple-500/50" : ""}`,
               fixedOutputFomMintClass,
             )}
           >
@@ -184,7 +184,7 @@ const Form: React.FC<{
                   <div className="flex justify-between items-center">
                     <button
                       type="button"
-                      className="py-2 px-3 rounded-2xl flex items-center dark:bg-dark-500 bg-light-500 dark:hover:bg-black/30 hover:bg-white/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 dark:text-grey-50 text-grey-700"
+                      className="py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 dark:text-grey-50 text-grey-700 transition duration-200"
                       disabled={fixedInputMint}
                       onClick={onClickSelectFromMint}
                     >
@@ -195,7 +195,7 @@ const Form: React.FC<{
                         {fromTokenInfo?.symbol}
                       </div>
                       {fixedInputMint ? null : (
-                        <span className="dark:text-grey-50 text-grey-700 fill-current">
+                        <span className="dark:text-grey-50 text-grey-700 dark:group-hover:!text-purple-400 group-hover:!text-purple-300 fill-current transition-color duration-200">
                           <ChevronDownIcon />
                         </span>
                       )}
@@ -260,14 +260,14 @@ const Form: React.FC<{
             )}
           </div>
 
-          <div className={`border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl  border ${inputToFocus ? "!border-purple-500 shadow-[0px_0px_10px_2px]  shadow-purple-500/50" : ""}`}>
+          <div className={`border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl  border ${inputToFocus ? "!border-purple-500 !border-purple-300/80 shadow-[0px_0px_10px_2px] shadow-purple-500/50" : ""}`}>
             <div className="px-x border-transparent rounded-xl">
               <div>
                 <div className="py-5 px-4 flex flex-col dark:text-white">
                   <div className="flex justify-between items-center">
                     <button
                       type="button"
-                      className="py-2 px-3 rounded-2xl flex items-center dark:bg-dark-500 bg-light-500 dark:hover:bg-black/30 hover:bg-white/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 dark:text-grey-50 text-grey-700"
+                      className="py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 dark:text-grey-50 text-grey-700 transition duration-200"
                       disabled={fixedOutputMint}
                       onClick={onClickSelectToMint}
                     >
@@ -279,7 +279,7 @@ const Form: React.FC<{
                       </div>
 
                       {fixedOutputMint ? null : (
-                        <span className="dark:text-grey-50 text-grey-700 fill-current">
+                        <span className="dark:text-grey-50 text-grey-700 dark:group-hover:!text-purple-400 group-hover:!text-purple-300 fill-current transition-color duration-200">
                           <ChevronDownIcon />
                         </span>
                       )}
