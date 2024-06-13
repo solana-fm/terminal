@@ -365,17 +365,17 @@ const Form: React.FC<{
         ) : (
           <JupButton
             size="lg"
-            className="w-full mt-4 disabled:opacity-70"
+            className="w-full mt-4 disabled:opacity-50 text-purple-50"
             type="button"
             onClick={onSubmit}
             disabled={isDisabled || loading}
           >
             {loading ? (
-              <span className="text-sm text-purple-50">Loading...</span>
+              <span className="text-sm">Loading...</span>
             ) : error ? (
-              <span className="text-sm text-purple-50">Error fetching route. Try changing your input</span>
+              <span className="text-sm ">Error fetching route. Try changing your input</span>
             ) : (
-              <span className='text-purple-50'>Swap</span>
+              <span className=''>Swap</span>
             )}
           </JupButton>
         )}
