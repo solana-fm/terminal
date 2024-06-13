@@ -96,7 +96,7 @@ const FormPairSelector = ({
 
         <input
           autoComplete="off"
-          className="w-full rounded-xl ml-4 truncate bg-transparent dark:text-grey-50 text-grey-700 placeholder:text-grey-400"
+          className="w-full rounded-xl ml-4 truncate bg-transparent dark:text-grey-50 text-grey-700 placeholder:text-grey-400 focus:outline-none"
           placeholder={`Search`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}

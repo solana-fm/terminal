@@ -394,7 +394,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                         allowedDecimalSeparators={['.', ',']}
                         suffix=" SOL"
                         placeholder={'Enter custom value'}
-                        className={`text-left h-full w-full dark:bg-navy-700 bg-light-100 placeholder:text-grey-400 py-4 px-5 text-sm rounded-xl ring-1 ring-white/5 dark:text-grey-50 text-grey-700 pointer-events-all relative`}
+                        className={`text-left h-full w-full dark:bg-navy-700 bg-light-100 placeholder:text-grey-400 py-4 px-5 text-sm rounded-xl ring-1 ring-white/5 dark:text-grey-50 text-grey-700 pointer-events-all relative focus:outline-none`}
                       />
                     );
                   }}
@@ -489,7 +489,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                         }}
                         allowLeadingZeros={false}
                         suffix="%"
-                        className="w-full dark:bg-navy-700 bg-light-100 pr-4 text-sm rounded-lg placeholder:text-grey-400 dark:text-grey-50 text-grey-700 text-right pointer-events-all"
+                        className="w-full dark:bg-navy-700 bg-light-100 pr-4 text-sm rounded-lg placeholder:text-grey-400 dark:text-grey-50 text-grey-700 text-right pointer-events-all focus:outline-none"
                         decimalSeparator={detectedSeparator}
                         placeholder={detectedSeparator === ',' ? '0,00%' : '0.00%'}
                       />

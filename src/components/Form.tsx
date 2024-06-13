@@ -214,7 +214,7 @@ const Form: React.FC<{
                         onBlur={() => setInputFromFocus(false)}
                         placeholder={'0.00'}
                         className={classNames(
-                          'h-full w-full bg-transparent dark:text-grey-50 text-grey-700 text-right font-semibold text-lg',
+                          'h-full w-full bg-transparent dark:text-grey-50 text-grey-700 text-right font-semibold text-lg focus:outline-none',
                           { 'cursor-not-allowed': inputAmountDisabled },
                         )}
                         decimalSeparator={detectedSeparator}
@@ -303,7 +303,7 @@ const Form: React.FC<{
                             onBlur={() => setInputToFocus(false)}
                             placeholder={swapMode === 'ExactOut' ? 'Enter desired amount' : ''}
                             className={classNames(
-                              'h-full w-full bg-transparent dark:text-grey-50 text-grey-700 text-right font-semibold placeholder:text-sm placeholder:font-normal text-lg',
+                              'h-full w-full bg-transparent dark:text-grey-50 text-grey-700 text-right font-semibold placeholder:text-sm placeholder:font-normal text-lg focus:outline-none',
                             )}
                             decimalSeparator={detectedSeparator}
                             isAllowed={withValueLimit}
