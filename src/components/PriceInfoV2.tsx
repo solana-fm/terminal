@@ -60,7 +60,7 @@ const PriceInfoV2 = ({
             return `${amountText} ${toTokenInfo.symbol}`;
         }
         return undefined;
-    }, [quoteResponse?.otherAmountThreshold, toTokenInfo.decimals, toTokenInfo.symbol]);
+    }, [quoteResponse?.otherAmountThreshold, toTokenInfo.decimals, toTokenInfo.symbol, form.fromValue]);
 
     const [feeInformation, setFeeInformation] = useState<TransactionFeeInfo>();
 
