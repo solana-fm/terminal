@@ -188,10 +188,21 @@ const SwappingScreen = () => {
             <div className="mt-2 flex flex-col items-center justify-center text-center px-4">
               <p className="text-xs font-semibold dark:text-grey-50 text-grey-700">
                 Swapped {fromLamports(inputAmount, fromTokenInfo.decimals)} {fromTokenInfo.symbol} to
+                passssss
               </p>
               <p className="text-2xl font-semibold dark:text-grey-50 text-grey-700">
                 {fromLamports(outputAmount, toTokenInfo.decimals)} {toTokenInfo.symbol}
               </p>
+              {explorerLink ? (
+                <a
+                  href={explorerLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer dark:text-purple-500 text-purple-600 mt-2 ml-2 text-xs hover:underline"
+                >
+                  View transaction
+                </a>
+              ) : null}
             </div>
 
             <PriceInfo
@@ -205,7 +216,7 @@ const SwappingScreen = () => {
           </div>
         </div>
 
-        {explorerLink ? (
+        {/* {explorerLink ? (
           <a
             href={explorerLink}
             target="_blank"
@@ -214,12 +225,12 @@ const SwappingScreen = () => {
           >
             View on {explorer}
           </a>
-        ) : null}
+        ) : null} */}
 
         <div className="mt-auto px-5 pb-4 flex space-x-2">
           <JupButton size="lg" className="w-full mt-4" type="button" onClick={onSwapMore}>
             {/* <V2SexyChameleonText> */}
-              <span className="text-sm text-purple-50">Swap More</span>
+            <span className="text-sm text-purple-50">Swap More</span>
             {/* </V2SexyChameleonText> */}
           </JupButton>
 
