@@ -15,7 +15,7 @@ export const WalletModalButton: FC<{ setIsWalletModalOpen(toggle: boolean): void
   return (
     <button
       type="button"
-      className="py-2 px-3 h-7 flex items-center rounded-2xl text-xs dark:bg-dark-700/70 bg-light-400 dark:text-grey-50 text-grey-400 border border-transparent dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:!text-purple-500"
+      className="py-2 px-3 h-7 flex items-center rounded-2xl text-xs dark:bg-dark-700/70 bg-light-400 text-grey-400 border border-transparent dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:!text-purple-500"
       onClick={handleClick}
     >
       {connecting ? (

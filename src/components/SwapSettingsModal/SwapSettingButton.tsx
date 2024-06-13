@@ -37,7 +37,7 @@ const SwapSettingButton = ({
       className={classNames(
         '!h-[42px] relative border border-transparent',
         borderClassName,
-        highlighted ? ` ${roundBorderClass} !border-purple-500` : '',
+        highlighted ? ` ${roundBorderClass} !border-purple-500 dark:bg-purple-500/30 bg-purple-100/40` : '',
         classes,
         className,
       )}
