@@ -31,7 +31,7 @@ const SwitchPairButton = ({
     <div className="flex justify-center">
       <div
         onClick={onClick}
-        className={`border dark:border-navy-600 border-navy-50 dark:bg-dark-800 bg-light-200 h-8 w-8 rounded-full flex items-center justify-center cursor-pointed group dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_19px_1px] hover:shadow-purple-500/30 transition duration-100 ${disabled ? 'opacity-50 cursor-not-allowed' : ''
+        className={`border dark:border-navy-600 border-navy-50 dark:bg-dark-800 bg-light-200 h-8 w-8 rounded-full flex items-center justify-center cursor-pointed group dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_19px_1px] hover:shadow-purple-500/30 transition-shadow duration-100 ${disabled ? 'opacity-50 cursor-not-allowed' : ''
           } ${className}`}
       >
         <div className="block">

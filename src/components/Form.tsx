@@ -174,7 +174,7 @@ const Form: React.FC<{
         <div className="flex-col">
           <div
             className={classNames(
-              `border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl transition-all  border ${inputFromFocus ? 'dark:!border-purple-500 !border-purple-300/80 shadow-[0px_0px_10px_2px] shadow-purple-500/50' : ''}`,
+              `border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl border transition-shadow ${inputFromFocus ? 'dark:!border-purple-500 !border-purple-300/80 shadow-[0px_0px_10px_2px] shadow-purple-500/50' : ''}`,
               fixedOutputFomMintClass,
             )}
           >
@@ -184,7 +184,7 @@ const Form: React.FC<{
                   <div className="flex justify-between items-center">
                     <button
                       type="button"
-                      className="py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 dark:text-grey-50 text-grey-700 transition duration-200"
+                      className="py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 dark:text-grey-50 text-grey-700 transition-shadow duration-200"
                       disabled={fixedInputMint}
                       onClick={onClickSelectFromMint}
                     >
@@ -195,7 +195,7 @@ const Form: React.FC<{
                         {fromTokenInfo?.symbol}
                       </div>
                       {fixedInputMint ? null : (
-                        <span className="dark:text-grey-50 text-grey-700 dark:group-hover:!text-purple-400 group-hover:!text-purple-300 fill-current transition-color duration-200">
+                        <span className="dark:text-grey-50 text-grey-700 dark:group-hover:!text-purple-400 group-hover:!text-purple-300 fill-current">
                           <ChevronDownIcon />
                         </span>
                       )}
@@ -255,7 +255,7 @@ const Form: React.FC<{
             {hasFixedMint ? null : (
               <SwitchPairButton
                 onClick={onClickSwitchPair}
-                className={classNames('transition-all', fixedOutputFomMintClass)}
+                className={classNames(fixedOutputFomMintClass)}
               />
             )}
           </div>
@@ -269,7 +269,7 @@ const Form: React.FC<{
                   <div className="flex justify-between items-center">
                     <button
                       type="button"
-                      className="py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 dark:text-grey-50 text-grey-700 transition duration-200"
+                      className="py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 dark:text-grey-50 text-grey-700 transition-shadow duration-200"
                       disabled={fixedOutputMint}
                       onClick={onClickSelectToMint}
                     >
@@ -281,7 +281,7 @@ const Form: React.FC<{
                       </div>
 
                       {fixedOutputMint ? null : (
-                        <span className="dark:text-grey-50 text-grey-700 dark:group-hover:!text-purple-400 group-hover:!text-purple-300 fill-current transition-color duration-200">
+                        <span className="dark:text-grey-50 text-grey-700 dark:group-hover:!text-purple-400 group-hover:!text-purple-300 fill-current">
                           <ChevronDownIcon />
                         </span>
                       )}
