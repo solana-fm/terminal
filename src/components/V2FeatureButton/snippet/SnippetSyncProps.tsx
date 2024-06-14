@@ -13,8 +13,8 @@ const SnippetSyncProps = () => {
   const passthroughWalletContextState = useWallet();
 
   useEffect(() => {
-    if (!window.SFMTerminal.syncProps) return;
-    window.SFMTerminal.syncProps({ passthroughWalletContextState });
+    if (!window.Jupiter.syncProps) return;
+    window.Jupiter.syncProps({ passthroughWalletContextState });
   }, [passthroughWalletContextState.connected, props]);
 `;
 

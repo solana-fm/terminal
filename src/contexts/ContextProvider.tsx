@@ -45,7 +45,7 @@ const WalletContextProvider: React.FC<PropsWithChildren<IInit>> = ({ autoConnect
 
   const enableWalletPassthrough = (() => {
     if (typeof window === 'undefined') return undefined;
-    return window.SFMTerminal.enableWalletPassthrough;
+    return window.Jupiter.enableWalletPassthrough;
   })();
 
   const wallets = useMemo(() => {

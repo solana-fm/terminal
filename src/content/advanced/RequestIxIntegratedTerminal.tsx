@@ -128,7 +128,7 @@ const IntegratedTerminal = (props: {
   );
 
   const launchTerminal = useCallback(async () => {
-    window.SFMTerminal.init({
+    window.Jupiter.init({
       displayMode: 'integrated',
       integratedTargetId: 'integrated-terminal',
       endpoint: rpcUrl,
@@ -155,9 +155,9 @@ const IntegratedTerminal = (props: {
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout | undefined = undefined;
-    if (!isLoaded || !window.SFMTerminal.init) {
+    if (!isLoaded || !window.Jupiter.init) {
       intervalId = setInterval(() => {
-        setIsLoaded(Boolean(window.SFMTerminal.init));
+        setIsLoaded(Boolean(window.Jupiter.init));
       }, 500);
     }
 
@@ -168,7 +168,7 @@ const IntegratedTerminal = (props: {
 
   useEffect(() => {
     setTimeout(() => {
-      if (isLoaded && Boolean(window.SFMTerminal.init)) {
+      if (isLoaded && Boolean(window.Jupiter.init)) {
         launchTerminal();
       }
     }, 200);
@@ -176,8 +176,8 @@ const IntegratedTerminal = (props: {
 
   // To make sure passthrough wallet are synced
   useEffect(() => {
-    if (!window.SFMTerminal.syncProps) return;
-    window.SFMTerminal.syncProps({ passthroughWalletContextState });
+    if (!window.Jupiter.syncProps) return;
+    window.Jupiter.syncProps({ passthroughWalletContextState });
   }, [passthroughWalletContextState, props]);
 
   return (

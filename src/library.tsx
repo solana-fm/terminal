@@ -133,8 +133,8 @@ const RenderShell = (props: IInit) => {
   }, [containerClassName, displayMode]);
 
   const onClose = () => {
-    if (window.SFMTerminal) {
-      window.SFMTerminal.close();
+    if (window.Jupiter) {
+      window.Jupiter.close();
     }
   };
 
@@ -248,14 +248,14 @@ async function init(props: IInit) {
   const targetDiv = document.createElement('div');
   containerId = `${integratedTargetId}-innner`;
   const instanceExist = document.getElementById(containerId);
-  window.SFMTerminal.store = store;
+  window.Jupiter.store = store;
   store.set(appProps, { ...props, scriptDomain });
 
   // Remove previous instance
   if (instanceExist) {
-    window.SFMTerminal._instance = null;
+    window.Jupiter._instance = null;
     instanceExist.remove();
-    window.SFMTerminal.root?.unmount();
+    window.Jupiter.root?.unmount();
   }
 
   targetDiv.id = containerId;
@@ -274,10 +274,10 @@ async function init(props: IInit) {
 
   // Passthrough
   if (enableWalletPassthrough) {
-    window.SFMTerminal.enableWalletPassthrough = true;
-    window.SFMTerminal.onRequestConnectWallet = onRequestConnectWallet;
+    window.Jupiter.enableWalletPassthrough = true;
+    window.Jupiter.onRequestConnectWallet = onRequestConnectWallet;
   } else {
-    window.SFMTerminal.enableWalletPassthrough = false;
+    window.Jupiter.enableWalletPassthrough = false;
   }
 
   let element;
@@ -289,15 +289,15 @@ async function init(props: IInit) {
 
   const root = createRoot(targetDiv);
   root.render(element);
-  window.SFMTerminal.root = root;
-  window.SFMTerminal._instance = element;
+  window.Jupiter.root = root;
+  window.Jupiter._instance = element;
 
   // Callbacks
-  window.SFMTerminal.onSwapError = onSwapError;
-  window.SFMTerminal.onSuccess = onSuccess;
-  window.SFMTerminal.onFormUpdate = onFormUpdate;
-  window.SFMTerminal.onScreenUpdate = onScreenUpdate;
-  window.SFMTerminal.onRequestIxCallback = onRequestIxCallback;
+  window.Jupiter.onSwapError = onSwapError;
+  window.Jupiter.onSuccess = onSuccess;
+  window.Jupiter.onFormUpdate = onFormUpdate;
+  window.Jupiter.onScreenUpdate = onScreenUpdate;
+  window.Jupiter.onRequestIxCallback = onRequestIxCallback;
 }
 
 const attributes = (document.currentScript as HTMLScriptElement)?.attributes;

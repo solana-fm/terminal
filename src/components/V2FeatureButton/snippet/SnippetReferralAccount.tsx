@@ -15,7 +15,7 @@ const SnippetReferralAccount = () => {
     feeBps: 100,
   };
   
-  window.SFMTerminal.init({
+  window.Jupiter.init({
     // ...
     platformFeeAndAccounts: TEST_PLATFORM_FEE_AND_ACCOUNTS,
   })

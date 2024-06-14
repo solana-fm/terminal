@@ -215,7 +215,8 @@ export const SwapContextProvider: FC<{
 
         // make default values to 1
         if (!toTokenInfo) return JSBI.BigInt(0);
-        if (!form.toValue || !hasNumericValue(form.toValue)) return JSBI.BigInt(new Decimal(1).mul(10 ** toTokenInfo.decimals));
+        if (!form.toValue || !hasNumericValue(form.toValue))
+          return JSBI.BigInt(new Decimal(1).mul(10 ** toTokenInfo.decimals));
 
         return JSBI.BigInt(new Decimal(form.toValue).mul(10 ** toTokenInfo.decimals));
       } else {
@@ -223,7 +224,8 @@ export const SwapContextProvider: FC<{
 
         // make default values to 1
         if (!fromTokenInfo) return JSBI.BigInt(0);
-        if (!form.fromValue || !hasNumericValue(form.fromValue)) return JSBI.BigInt(new Decimal(1).mul(10 ** fromTokenInfo.decimals));
+        if (!form.fromValue || !hasNumericValue(form.fromValue))
+          return JSBI.BigInt(new Decimal(1).mul(10 ** fromTokenInfo.decimals));
 
         return JSBI.BigInt(new Decimal(form.fromValue).mul(10 ** fromTokenInfo.decimals));
       }
@@ -512,15 +514,15 @@ export const SwapContextProvider: FC<{
 
   // onFormUpdate callback
   useEffect(() => {
-    if (typeof window.SFMTerminal.onFormUpdate === 'function') {
-      window.SFMTerminal.onFormUpdate(form);
+    if (typeof window.Jupiter.onFormUpdate === 'function') {
+      window.Jupiter.onFormUpdate(form);
     }
   }, [form]);
 
   // onFormUpdate callback
   useEffect(() => {
-    if (typeof window.SFMTerminal.onScreenUpdate === 'function') {
-      window.SFMTerminal.onScreenUpdate(screen);
+    if (typeof window.Jupiter.onScreenUpdate === 'function') {
+      window.Jupiter.onScreenUpdate(screen);
     }
   }, [screen]);
 

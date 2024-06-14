@@ -44,8 +44,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
   // Cleanup on tab change
   useEffect(() => {
-    if (window.SFMTerminal._instance) {
-      window.SFMTerminal._instance = null;
+    if (window.Jupiter._instance) {
+      window.Jupiter._instance = null;
     }
   }, [tab]);
 

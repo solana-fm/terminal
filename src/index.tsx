@@ -25,7 +25,7 @@ const App = () => {
 
 const RenderJupiter = () => {
   return (
-    <Provider store={typeof window !== 'undefined' ? window.SFMTerminal.store : undefined}>
+    <Provider store={typeof window !== 'undefined' ? window.Jupiter.store : undefined}>
       <App />
     </Provider>
   );

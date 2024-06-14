@@ -80,7 +80,7 @@ Terminal is designed to work anywhere the web runs, including React, Plain HTML/
 Your dApp already has a `<WalletProvider />`.
 
 ```tsx
-window.SFMTerminal.init({ enableWalletPassthrough: true });
+window.Jupiter.init({ enableWalletPassthrough: true });
 ```
 
 Then, syncronise wallet state between your dApp and Jupiter Terminal with `syncProps()`
@@ -90,8 +90,8 @@ import { useWallet } from '@solana/wallet-adapter-react'; // Or @jup-ag/wallet-a
 
 const passthroughWalletContextState = useWallet();
 useEffect(() => {
-  if (!window.SFMTerminal.syncProps) return;
-  window.SFMTerminal.syncProps({ passthroughWalletContextState });
+  if (!window.Jupiter.syncProps) return;
+  window.Jupiter.syncProps({ passthroughWalletContextState });
 }, [passthroughWalletContextState.connected, props]);
 ```
 
@@ -100,13 +100,13 @@ useEffect(() => {
 Your dApp does not have a `<WalletProvider />`, or is a plain HTML/JS website.
 
 ```tsx
-window.SFMTerminal.init({});
+window.Jupiter.init({});
 ```
 
 ### 3. Setup other props
 
 ```tsx
-window.SFMTerminal.init({
+window.Jupiter.init({
   /** Required
    * Solana RPC endpoint
    * We do not recommend using the public RPC endpoint for production dApp, you will get severely rate-limited
@@ -169,7 +169,7 @@ const TEST_PLATFORM_FEE_AND_ACCOUNTS = {
   feeBps: 100,
 };
 
-window.SFMTerminal.init({
+window.Jupiter.init({
   // ...
   platformFeeAndAccounts: TEST_PLATFORM_FEE_AND_ACCOUNTS,
 });
@@ -186,7 +186,7 @@ const TEST_PLATFORM_FEE_AND_ACCOUNTS = {
   feeAccounts,
 };
 
-window.SFMTerminal.init({
+window.Jupiter.init({
   // ...
   platformFeeAndAccounts: TEST_PLATFORM_FEE_AND_ACCOUNTS,
 });
@@ -203,11 +203,11 @@ window.SFMTerminal.init({
 - `close()` function only hide the widget.
 
 ```tsx
-if (window.SFMTerminal._instance) {
-  window.SFMTerminal.resume();
+if (window.Jupiter._instance) {
+  window.Jupiter.resume();
 }
 
-window.SFMTerminal.close();
+window.Jupiter.close();
 ```
 
 ### Strict Token List
@@ -238,7 +238,7 @@ You can change the default explorer by passing in the explorer name to the `defa
 Callbacks that may be useful for your dApp, from form updates, to swap success/error.
 
 ```tsx
-window.SFMTerminal.init({
+window.Jupiter.init({
   /** Callbacks */
   /** When an error has occured during swap */
   onSwapError ({ error, quoteResponseMeta }: { error TransactionError; quoteResponseMeta: QuoteResponseMeta | null }) {}
@@ -263,7 +263,7 @@ Examples:
 - Custom zIndex
 
 ```tsx
-window.SFMTerminal.init({
+window.Jupiter.init({
   // ...
   containerStyles: { zIndex: 100 },
 });
@@ -272,7 +272,7 @@ window.SFMTerminal.init({
 - Custom height
 
 ```tsx
-window.SFMTerminal.init({
+window.Jupiter.init({
   // ...
   containerStyles: { maxHeight: '90vh' },
 });
@@ -287,7 +287,7 @@ Example:
 - Custom breakpoints
 
 ```tsx
-window.SFMTerminal.init({
+window.Jupiter.init({
   // ...
   containerClassName: 'max-h-[90vh] lg:max-h-[600px]',
 });

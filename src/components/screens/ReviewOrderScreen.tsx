@@ -28,10 +28,10 @@ const ConfirmationScreen = () => {
   const onSubmit = useCallback(async () => {
     setScreen('Swapping');
 
-    if (window.SFMTerminal.onRequestIxCallback) {
+    if (window.Jupiter.onRequestIxCallback) {
       const ixAndCb = await onRequestIx();
       if (ixAndCb) {
-        window.SFMTerminal.onRequestIxCallback(ixAndCb);
+        window.Jupiter.onRequestIxCallback(ixAndCb);
       } else {
         setScreen('Error');
       }

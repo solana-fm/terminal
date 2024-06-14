@@ -10,7 +10,7 @@ import { PlatformFeeAndAccounts } from '@jup-ag/common';
 
 declare global {
   interface Window {
-    SFMTerminal: JupiterTerminal;
+    Jupiter: JupiterTerminal;
   }
 }
 

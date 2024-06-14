@@ -6,8 +6,8 @@ export const WalletModalButton: FC<{ setIsWalletModalOpen(toggle: boolean): void
 
   const handleClick = useCallback(
     (event: MouseEvent<HTMLButtonElement>) => {
-      if (window.SFMTerminal.enableWalletPassthrough && window.SFMTerminal.onRequestConnectWallet) {
-        window.SFMTerminal.onRequestConnectWallet();
+      if (window.Jupiter.enableWalletPassthrough && window.Jupiter.onRequestConnectWallet) {
+        window.Jupiter.onRequestConnectWallet();
       } else {
         setIsWalletModalOpen(true);
       }

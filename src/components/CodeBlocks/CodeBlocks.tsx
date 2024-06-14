@@ -59,8 +59,8 @@ const CodeBlocks = ({
 
   // To make sure passthrough wallet are synced
   useEffect(() => {
-    if (!window.SFMTerminal.syncProps) return;
-    window.SFMTerminal.syncProps({ passthroughWalletContextState });
+    if (!window.Jupiter.syncProps) return;
+    window.Jupiter.syncProps({ passthroughWalletContextState });
   }, [passthroughWalletContextState.connected, props]);
 `;
 
@@ -81,7 +81,7 @@ const CodeBlocks = ({
   }, [displayMode]);
 
   const INIT_SNIPPET = `
-  window.SFMTerminal.init(${formPropsSnippet});
+  window.Jupiter.init(${formPropsSnippet});
   `;
   const unformattedSnippet = [formConfigurator.simulateWalletPassthrough ? USE_WALLET_SNIPPET : '', INIT_SNIPPET].join(
     '\n',

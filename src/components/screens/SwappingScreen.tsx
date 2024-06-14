@@ -69,16 +69,16 @@ const SwappingScreen = () => {
     if (lastSwapResult?.swapResult && 'error' in lastSwapResult?.swapResult) {
       setErrorMessage(lastSwapResult?.swapResult?.error?.message || '');
 
-      if (window.SFMTerminal.onSwapError) {
-        window.SFMTerminal.onSwapError({
+      if (window.Jupiter.onSwapError) {
+        window.Jupiter.onSwapError({
           error: lastSwapResult?.swapResult?.error,
           quoteResponseMeta: lastSwapResult?.quoteResponseMeta,
         });
       }
       return;
     } else if (lastSwapResult?.swapResult && 'txid' in lastSwapResult?.swapResult) {
-      if (window.SFMTerminal.onSuccess) {
-        window.SFMTerminal.onSuccess({
+      if (window.Jupiter.onSuccess) {
+        window.Jupiter.onSuccess({
           txid: lastSwapResult?.swapResult?.txid,
           swapResult: lastSwapResult?.swapResult,
           quoteResponseMeta: lastSwapResult?.quoteResponseMeta,
@@ -90,7 +90,7 @@ const SwappingScreen = () => {
 
   const onClose = () => {
     if (!displayMode || displayMode === 'modal') {
-      window.SFMTerminal.close();
+      window.Jupiter.close();
     }
 
     reset();
@@ -131,7 +131,9 @@ const SwappingScreen = () => {
         </div>
 
         {txStatus === undefined ? (
-          <span className="dark:text-grey-50 text-grey-700 text-center mt-8 text-sm px-4">Awaiting approval from your wallet...</span>
+          <span className="dark:text-grey-50 text-grey-700 text-center mt-8 text-sm px-4">
+            Awaiting approval from your wallet...
+          </span>
         ) : null}
 
         <div className="flex flex-col w-full justify-center items-center px-5 mt-7">
@@ -187,8 +189,7 @@ const SwappingScreen = () => {
           <div className="mt-4 dark:bg-dark-700/70 bg-light-400 rounded-xl overflow-y-auto w-full webkit-scrollbar py-4 max-h-[260px]">
             <div className="mt-2 flex flex-col items-center justify-center text-center px-4">
               <p className="text-xs font-semibold dark:text-grey-50 text-grey-700">
-                Swapped {fromLamports(inputAmount, fromTokenInfo.decimals)} {fromTokenInfo.symbol} to
-                passssss
+                Swapped {fromLamports(inputAmount, fromTokenInfo.decimals)} {fromTokenInfo.symbol} to passssss
               </p>
               <p className="text-2xl font-semibold dark:text-grey-50 text-grey-700">
                 {fromLamports(outputAmount, toTokenInfo.decimals)} {toTokenInfo.symbol}
@@ -257,7 +258,7 @@ const SwappingScreen = () => {
 
             <JupButton size="lg" className="w-full mt-6 disabled:opacity-50" type="button" onClick={onGoBack}>
               {/* <V2SexyChameleonText>Retry</V2SexyChameleonText> */}
-              <span className='text-purple-50'>Retry</span>
+              <span className="text-purple-50">Retry</span>
             </JupButton>
           </div>
         </div>
@@ -274,7 +275,7 @@ const SwappingScreen = () => {
 
             <JupButton size="lg" className="w-full mt-6 disabled:opacity-50" type="button" onClick={onGoBack}>
               {/* <V2SexyChameleonText>Retry</V2SexyChameleonText> */}
-              <span className='text-purple-50'>Retry</span>
+              <span className="text-purple-50">Retry</span>
             </JupButton>
           </div>
         </div>
