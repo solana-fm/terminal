@@ -9,7 +9,7 @@ import 'tailwindcss/tailwind.css';
 import JupiterLogo from './icons/JupiterLogo';
 import ChevronDownIcon from './icons/ChevronDownIcon';
 
-let containerId = "";
+let containerId = '';
 // const containerId = 'solanafm-jup-terminal';
 const packageJson = require('../package.json');
 const bundleName = `main-${packageJson.version}`;
@@ -59,12 +59,28 @@ async function loadJupiter() {
   try {
     // Load all the scripts and styles
     await Promise.all([
-      loadRemote('jupiter-load-script-app', `${scriptDomain}/${bundleName}-app.js`, 'text/javascript'),
-      loadRemote('jupiter-load-styles-tailwind', `${scriptDomain}/${bundleName}-Tailwind.css`, 'stylesheet'),
-      loadRemote('jupiter-load-styles-preflight', `${scriptDomain}/scoped-preflight.css`, 'stylesheet'),
+      loadRemote(
+        'jupiter-load-script-app',
+        `${scriptDomain}/gh/solana-fm/terminal/public/${bundleName}-app.js`,
+        'text/javascript',
+      ),
+      loadRemote(
+        'jupiter-load-styles-tailwind',
+        `${scriptDomain}/gh/solana-fm/terminal/public/${bundleName}-Tailwind.css`,
+        'stylesheet',
+      ),
+      loadRemote(
+        'jupiter-load-styles-preflight',
+        `${scriptDomain}/gh/solana-fm/terminal/public/scoped-preflight.css`,
+        'stylesheet',
+      ),
     ]);
     // The sequence matters! the last imported Jupiter.css takes precendent
-    loadRemote('jupiter-load-styles-jupiter', `${scriptDomain}/${bundleName}-Jupiter.css`, 'stylesheet');
+    loadRemote(
+      'jupiter-load-styles-jupiter',
+      `${scriptDomain}/gh/solana-fm/terminal/public/${bundleName}-Jupiter.css`,
+      'stylesheet',
+    );
   } catch (error) {
     console.error(`Error loading Jupiter Terminal: ${error}`);
     throw new Error(`Error loading Jupiter Terminal: ${error}`);
