@@ -69,16 +69,16 @@ const SwappingScreen = () => {
     if (lastSwapResult?.swapResult && 'error' in lastSwapResult?.swapResult) {
       setErrorMessage(lastSwapResult?.swapResult?.error?.message || '');
 
-      if (window.Jupiter.onSwapError) {
-        window.Jupiter.onSwapError({
+      if (window.SFMTerminal.onSwapError) {
+        window.SFMTerminal.onSwapError({
           error: lastSwapResult?.swapResult?.error,
           quoteResponseMeta: lastSwapResult?.quoteResponseMeta,
         });
       }
       return;
     } else if (lastSwapResult?.swapResult && 'txid' in lastSwapResult?.swapResult) {
-      if (window.Jupiter.onSuccess) {
-        window.Jupiter.onSuccess({
+      if (window.SFMTerminal.onSuccess) {
+        window.SFMTerminal.onSuccess({
           txid: lastSwapResult?.swapResult?.txid,
           swapResult: lastSwapResult?.swapResult,
           quoteResponseMeta: lastSwapResult?.quoteResponseMeta,
@@ -90,7 +90,7 @@ const SwappingScreen = () => {
 
   const onClose = () => {
     if (!displayMode || displayMode === 'modal') {
-      window.Jupiter.close();
+      window.SFMTerminal.close();
     }
 
     reset();
@@ -121,7 +121,7 @@ const SwappingScreen = () => {
     return (
       <>
         <div className="flex w-full justify-center">
-          <div className="text-white">{swapState === 'loading' ? 'Performing Swap' : ''}</div>
+          <div className="dark:text-grey-50 text-grey-700">{swapState === 'loading' ? 'Performing Swap' : ''}</div>
         </div>
 
         <div className="flex w-full justify-center items-center mt-9">
@@ -131,15 +131,15 @@ const SwappingScreen = () => {
         </div>
 
         {txStatus === undefined ? (
-          <span className="text-white text-center mt-8 text-sm px-4">Awaiting approval from your wallet...</span>
+          <span className="dark:text-grey-50 text-grey-700 text-center mt-8 text-sm px-4">Awaiting approval from your wallet...</span>
         ) : null}
 
         <div className="flex flex-col w-full justify-center items-center px-5 mt-7">
           {swapState === 'loading' && (
-            <div className="flex items-center w-full rounded-xl p-4 bg-[#25252D] mb-2">
+            <div className="flex items-center w-full rounded-xl p-4 dark:bg-dark-700/70 bg-light-400 mb-2">
               <Spinner spinnerColor={'white'} />
 
-              <div className="ml-4 text-white text-sm">
+              <div className="ml-4 dark:text-grey-50 text-grey-700 text-sm">
                 <span>Swapping</span>
               </div>
             </div>
@@ -182,16 +182,27 @@ const SwappingScreen = () => {
         </div>
 
         <div className="flex flex-col justify-center items-center">
-          <p className="mt-5 text-white text-xl font-semibold">Swap successful</p>
+          <p className="mt-5 dark:text-grey-50 text-grey-700 text-xl font-semibold">Swap successful</p>
 
-          <div className="mt-4 bg-[#25252D] rounded-xl overflow-y-auto w-full webkit-scrollbar py-4 max-h-[260px]">
+          <div className="mt-4 dark:bg-dark-700/70 bg-light-400 rounded-xl overflow-y-auto w-full webkit-scrollbar py-4 max-h-[260px]">
             <div className="mt-2 flex flex-col items-center justify-center text-center px-4">
-              <p className="text-xs font-semibold text-white/75">
+              <p className="text-xs font-semibold dark:text-grey-50 text-grey-700">
                 Swapped {fromLamports(inputAmount, fromTokenInfo.decimals)} {fromTokenInfo.symbol} to
+                passssss
               </p>
-              <p className="text-2xl font-semibold text-white/75">
+              <p className="text-2xl font-semibold dark:text-grey-50 text-grey-700">
                 {fromLamports(outputAmount, toTokenInfo.decimals)} {toTokenInfo.symbol}
               </p>
+              {explorerLink ? (
+                <a
+                  href={explorerLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer dark:text-purple-500 text-purple-600 mt-2 ml-2 text-xs hover:underline"
+                >
+                  View transaction
+                </a>
+              ) : null}
             </div>
 
             <PriceInfo
@@ -200,32 +211,32 @@ const SwappingScreen = () => {
               toTokenInfo={toTokenInfo}
               loading={false}
               showFullDetails
-              containerClassName="bg-[#25252D] border-none mt-0"
+              containerClassName="dark:bg-dark-700/70 bg-light-400 border-none mt-0"
             />
           </div>
         </div>
 
-        {explorerLink ? (
+        {/* {explorerLink ? (
           <a
             href={explorerLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="cursor-pointer text-white/50 mt-2 ml-2 text-xs hover:underline"
+            className="cursor-pointer text-grey-400 mt-2 ml-2 text-xs hover:underline"
           >
             View on {explorer}
           </a>
-        ) : null}
+        ) : null} */}
 
         <div className="mt-auto px-5 pb-4 flex space-x-2">
           <JupButton size="lg" className="w-full mt-4" type="button" onClick={onSwapMore}>
-            <V2SexyChameleonText>
-              <span className="text-sm">Swap More</span>
-            </V2SexyChameleonText>
+            {/* <V2SexyChameleonText> */}
+            <span className="text-sm text-purple-50">Swap More</span>
+            {/* </V2SexyChameleonText> */}
           </JupButton>
 
           {displayMode !== 'integrated' ? (
             <JupButton size="lg" className="w-full mt-4" type="button" onClick={onClose}>
-              <span className="text-sm">Close</span>
+              <span className="text-sm text-purple-50">Close</span>
             </JupButton>
           ) : null}
         </div>
@@ -240,12 +251,13 @@ const SwappingScreen = () => {
           <div className="flex flex-col items-center justify-center text-center mt-12">
             <ErrorIcon />
 
-            <p className="text-white mt-2">Swap Failed</p>
-            <p className="text-white/50 text-xs mt-2">We were unable to complete the swap, please try again.</p>
-            {errorMessage ? <p className="text-white/50 text-xs mt-2">{errorMessage}</p> : ''}
+            <p className="dark:text-grey-50 text-grey-700 mt-2">Swap Failed</p>
+            <p className="text-grey-400 text-xs mt-2">We were unable to complete the swap, please try again.</p>
+            {errorMessage ? <p className="text-grey-400 text-xs mt-2">{errorMessage}</p> : ''}
 
             <JupButton size="lg" className="w-full mt-6 disabled:opacity-50" type="button" onClick={onGoBack}>
-              <V2SexyChameleonText>Retry</V2SexyChameleonText>
+              {/* <V2SexyChameleonText>Retry</V2SexyChameleonText> */}
+              <span className='text-purple-50'>Retry</span>
             </JupButton>
           </div>
         </div>
@@ -256,12 +268,13 @@ const SwappingScreen = () => {
           <div className="flex flex-col items-center justify-center text-center mt-12">
             <ErrorIcon />
 
-            <p className="text-white mt-2">Transaction timed-out</p>
-            <p className="text-white/50 text-xs mt-2">We were unable to complete the swap, please try again.</p>
-            {errorMessage ? <p className="text-white/50 text-xs mt-2">{errorMessage}</p> : ''}
+            <p className="dark:text-grey-50 text-grey-700 mt-2">Transaction timed-out</p>
+            <p className="text-grey-400 text-xs mt-2">We were unable to complete the swap, please try again.</p>
+            {errorMessage ? <p className="text-grey-400 text-xs mt-2">{errorMessage}</p> : ''}
 
             <JupButton size="lg" className="w-full mt-6 disabled:opacity-50" type="button" onClick={onGoBack}>
-              <V2SexyChameleonText>Retry</V2SexyChameleonText>
+              {/* <V2SexyChameleonText>Retry</V2SexyChameleonText> */}
+              <span className='text-purple-50'>Retry</span>
             </JupButton>
           </div>
         </div>

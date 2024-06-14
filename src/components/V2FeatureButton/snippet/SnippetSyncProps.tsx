@@ -13,8 +13,8 @@ const SnippetSyncProps = () => {
   const passthroughWalletContextState = useWallet();
 
   useEffect(() => {
-    if (!window.Jupiter.syncProps) return;
-    window.Jupiter.syncProps({ passthroughWalletContextState });
+    if (!window.SFMTerminal.syncProps) return;
+    window.SFMTerminal.syncProps({ passthroughWalletContextState });
   }, [passthroughWalletContextState.connected, props]);
 `;
 
@@ -30,7 +30,7 @@ const SnippetSyncProps = () => {
   }, [unformattedSnippet]);
 
   return (
-    <div className='flex w-full justify-center text-left'>
+    <div className="flex w-full justify-center text-left">
       <SyntaxHighlighter language="typescript" showLineNumbers style={vs2015}>
         {snippet}
       </SyntaxHighlighter>

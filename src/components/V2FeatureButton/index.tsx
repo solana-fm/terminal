@@ -214,7 +214,7 @@ const V2FeatureButton = () => {
               </Desc>
 
               <div className="mt-2 border p-2 border-white/10 rounded-xl">
-                <div className="mt-2 mb-3 max-w-[384px] bg-[#FBA43A] rounded-xl flex items-center justify-between px-3 py-2">
+                <div className="mt-2 mb-3 max-w-[384px] bg-orange-300 rounded-xl flex items-center justify-between px-3 py-2">
                   <span className="flex text-xs justify-center items-center text-left">
                     <div className="ml-1 text-rock">
                       <span>
@@ -224,7 +224,7 @@ const V2FeatureButton = () => {
                   </span>
                 </div>
 
-                <div className="mt-2 mb-3 max-w-[384px] bg-[#FBA43A] rounded-xl flex items-center justify-between px-3 py-2">
+                <div className="mt-2 mb-3 max-w-[384px] bg-orange-300 rounded-xl flex items-center justify-between px-3 py-2">
                   <span className="flex text-xs justify-center items-center text-left">
                     <div className="ml-1 text-rock">
                       <span>

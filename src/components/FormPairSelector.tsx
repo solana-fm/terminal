@@ -47,11 +47,8 @@ const FormPairSelector = ({
         if (!accounts[a.address]) return 1;
         if (!accounts[b.address]) return -1;
 
-        const [tokenAPrice, tokenBPrice] = [
-          tokenPriceMap[a.address]?.usd,
-          tokenPriceMap[b.address]?.usd,
-        ]
-        
+        const [tokenAPrice, tokenBPrice] = [tokenPriceMap[a.address]?.usd, tokenPriceMap[b.address]?.usd];
+
         // Sort by USD value
         if (tokenAPrice && tokenBPrice) {
           const totalAValue = new Decimal(tokenAPrice).mul(accounts[a.address].balance);
@@ -61,10 +58,14 @@ const FormPairSelector = ({
 
         // If no usd value, sort by balance
         return accounts[b.address].balance - accounts[a.address].balance;
-      })
+      });
 
     if (searchTerm) {
-      const filteredList = sortedList.filter((item) => item.symbol.toLowerCase().includes(searchTerm.toLowerCase()) || item.address.toLowerCase().includes(searchTerm.toLowerCase()));
+      const filteredList = sortedList.filter(
+        (item) =>
+          item.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.address.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
       setSearchResult(filteredList);
     } else {
       setSearchResult(sortedList);
@@ -76,26 +77,26 @@ const FormPairSelector = ({
   useEffect(() => inputRef.current?.focus(), [inputRef]);
 
   return (
-    <div className="flex flex-col h-full w-full py-4 px-2 bg-v3-modal">
+    <div className="flex flex-col h-full w-full py-4 px-2 dark:bg-dark-900 bg-light-50">
       <div className="flex w-full justify-between">
-        <div className="text-white fill-current w-6 h-6 cursor-pointer" onClick={onClose}>
+        <div className="dark:text-grey-50 text-grey-700 fill-current w-6 h-6 cursor-pointer" onClick={onClose}>
           <LeftArrowIcon width={24} height={24} />
         </div>
 
-        <div className="text-white">Select Token</div>
+        <div className="dark:text-grey-50 text-grey-700">Select Token</div>
 
         <div className=" w-6 h-6" />
       </div>
 
       <div
-        className="flex px-5 mt-4 w-[98%] rounded-xl bg-v2-lily/10"
+        className="flex px-5 mt-4 w-[98%] rounded-xl dark:bg-navy-700 bg-light-100"
         style={{ height: SEARCH_BOX_HEIGHT, maxHeight: SEARCH_BOX_HEIGHT }}
       >
         <SearchIcon />
 
         <input
           autoComplete="off"
-          className="w-full rounded-xl ml-4 truncate bg-transparent text-white/50 placeholder:text-white/20"
+          className="w-full rounded-xl ml-4 truncate bg-transparent dark:text-grey-50 text-grey-700 placeholder:text-grey-400 focus:outline-none"
           placeholder={`Search`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -128,7 +129,7 @@ const FormPairSelector = ({
         )}
 
         {searchResult.length === 0 ? (
-          <div className="mt-4 mb-4 text-center text-white/50">
+          <div className="mt-4 mb-4 text-center text-grey-400">
             <span>No tokens found</span>
           </div>
         ) : (

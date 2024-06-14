@@ -28,13 +28,13 @@ const isDeveloping = isDevNodeENV && typeof window !== 'undefined';
 const isPreview = Boolean(process.env.NEXT_PUBLIC_IS_NEXT_PREVIEW);
 if ((isDeveloping || isPreview) && typeof window !== 'undefined') {
   // Initialize an empty value, simulate webpack IIFE when imported
-  (window as any).Jupiter = {};
+  (window as any).SFMTerminal = {};
 
   // Perform local fetch on development, and next preview
   Promise.all([import('../library'), import('../index')]).then((res) => {
     const [libraryProps, rendererProps] = res;
 
-    (window as any).Jupiter = libraryProps;
+    (window as any).SFMTerminal = libraryProps;
     (window as any).JupiterRenderer = rendererProps;
   });
 }
@@ -44,8 +44,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
   // Cleanup on tab change
   useEffect(() => {
-    if (window.Jupiter._instance) {
-      window.Jupiter._instance = null;
+    if (window.SFMTerminal._instance) {
+      window.SFMTerminal._instance = null;
     }
   }, [tab]);
 

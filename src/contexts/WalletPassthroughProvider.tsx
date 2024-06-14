@@ -1,14 +1,7 @@
 import { useWallet, Wallet, WalletName } from '@jup-ag/wallet-adapter';
 import { PublicKey } from '@solana/web3.js';
 import { useAtom } from 'jotai';
-import React, {
-  createContext,
-  FC,
-  PropsWithChildren,
-  ReactNode,
-  useContext,
-  useMemo,
-} from 'react';
+import React, { createContext, FC, PropsWithChildren, ReactNode, useContext, useMemo } from 'react';
 import { appProps } from 'src/library';
 
 interface IWalletPassThrough {
@@ -62,7 +55,7 @@ const FromWalletAdapter: FC<PropsWithChildren> = ({ children }) => {
 
 const WalletPassthroughProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [atom] = useAtom(appProps);
-  const wallet = atom?.passthroughWalletContextState?.wallet
+  const wallet = atom?.passthroughWalletContextState?.wallet;
 
   const walletPassthrough: IWalletPassThrough = useMemo(() => {
     return {
@@ -80,7 +73,7 @@ const WalletPassthroughProvider: FC<{ children: ReactNode }> = ({ children }) =>
     };
   }, [atom?.passthroughWalletContextState, wallet?.adapter]);
 
-  if (!window.Jupiter.enableWalletPassthrough) {
+  if (!window.SFMTerminal.enableWalletPassthrough) {
     return <FromWalletAdapter>{children}</FromWalletAdapter>;
   }
 

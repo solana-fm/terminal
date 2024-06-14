@@ -22,7 +22,7 @@ const WidgetTerminal = (props: {
   const { setShowModal } = useUnifiedWalletContext();
 
   const launchTerminal = useCallback(() => {
-    window.Jupiter.init({
+    window.SFMTerminal.init({
       displayMode: 'widget',
       widgetStyle: {
         position,
@@ -37,13 +37,24 @@ const WidgetTerminal = (props: {
       defaultExplorer,
       useUserSlippage,
     });
-  }, [defaultExplorer, formProps, passthroughWalletContextState, position, rpcUrl, setShowModal, simulateWalletPassthrough, size, strictTokenList, useUserSlippage]);
+  }, [
+    defaultExplorer,
+    formProps,
+    passthroughWalletContextState,
+    position,
+    rpcUrl,
+    setShowModal,
+    simulateWalletPassthrough,
+    size,
+    strictTokenList,
+    useUserSlippage,
+  ]);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout | undefined = undefined;
-    if (!isLoaded || !window.Jupiter.init || !intervalId) {
+    if (!isLoaded || !window.SFMTerminal.init || !intervalId) {
       intervalId = setInterval(() => {
-        setIsLoaded(Boolean(window.Jupiter.init));
+        setIsLoaded(Boolean(window.SFMTerminal.init));
       }, 500);
     }
 
@@ -54,7 +65,7 @@ const WidgetTerminal = (props: {
 
   useEffect(() => {
     setTimeout(() => {
-      if (isLoaded && Boolean(window.Jupiter.init)) {
+      if (isLoaded && Boolean(window.SFMTerminal.init)) {
         launchTerminal();
       }
     }, 200);
@@ -62,8 +73,8 @@ const WidgetTerminal = (props: {
 
   // To make sure passthrough wallet are synced
   useEffect(() => {
-    if (!window.Jupiter.syncProps) return;
-    window.Jupiter.syncProps({ passthroughWalletContextState });
+    if (!window.SFMTerminal.syncProps) return;
+    window.SFMTerminal.syncProps({ passthroughWalletContextState });
   }, [passthroughWalletContextState, props]);
 
   return (

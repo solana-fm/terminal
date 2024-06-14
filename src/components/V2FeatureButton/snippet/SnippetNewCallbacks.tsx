@@ -10,7 +10,7 @@ import prettierPluginTypescript from 'prettier/plugins/typescript';
 const SnippetNewCallbacks = () => {
   const [snippet, setSnippet] = useState(``);
   const unformattedSnippet = `
-  window.Jupiter.init({
+  window.SFMTerminal.init({
     /** When an error has occured during swap */
     onSwapError ({ error, quoteResponseMeta }) {},
 

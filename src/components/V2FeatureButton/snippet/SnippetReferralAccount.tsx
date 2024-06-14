@@ -15,7 +15,7 @@ const SnippetReferralAccount = () => {
     feeBps: 100,
   };
   
-  window.Jupiter.init({
+  window.SFMTerminal.init({
     // ...
     platformFeeAndAccounts: TEST_PLATFORM_FEE_AND_ACCOUNTS,
   })
@@ -33,7 +33,7 @@ const SnippetReferralAccount = () => {
   }, [unformattedSnippet]);
 
   return (
-    <div className='flex w-full justify-center text-left'>
+    <div className="flex w-full justify-center text-left">
       <SyntaxHighlighter language="typescript" showLineNumbers style={vs2015}>
         {snippet}
       </SyntaxHighlighter>

@@ -214,12 +214,12 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
   );
 
   return (
-    <div className={classNames('w-full rounded-xl flex flex-col bg-v3-modal text-white shadow-xl max-h-[90%]')}>
+    <div className={classNames('w-full rounded-xl flex flex-col dark:bg-dark-900 bg-light-50 dark:text-grey-50 text-grey-700 shadow-xl max-h-[90%]')}>
       <div className="flex justify-between items-center p-4 border-b border-white/10">
         <div className="text-sm font-semibold">
           <span>Swap Settings</span>
         </div>
-        <div className="text-white fill-current cursor-pointer" onClick={() => closeModal()}>
+        <div className="dark:text-grey-50 text-grey-700 fill-current cursor-pointer" onClick={() => closeModal()}>
           <CloseIcon width={14} height={14} />
         </div>
       </div>
@@ -237,7 +237,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                 variant="dark"
                 className="!left-0 !top-16 w-[50%]"
                 content={
-                  <span className="flex rounded-lg text-xs text-white/75">
+                  <span className="flex rounded-lg text-xs dark:text-grey-50 text-grey-700 ">
                     The priority fee is paid to the Solana network. This additional fee helps boost how a transaction is
                     prioritized against others, resulting in faster transaction execution times.
                   </span>
@@ -249,7 +249,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
               </Tooltip>
             </div>
 
-            <p className="text-xs text-white/50 font-[500] mt-2">
+            <p className="text-xs text-grey-400 font-[500] mt-2">
               These fees apply across Jupiter’s entire product suite, such as Swap, Perps, DCA, Limit Order
             </p>
 
@@ -282,7 +282,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                               }}
                             >
                               <div className="whitespace-nowrap px-4">
-                                <p className="text-xs whitespace-nowrap">{name}</p>
+                                <p className="text-xs whitespace-nowrap dark:text-grey-50 text-grey-700">{name}</p>
                               </div>
                             </SwapSettingButton>
                           );
@@ -327,7 +327,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                               }}
                             >
                               <div className="whitespace-nowrap">
-                                <p className="text-sm text-white">{name}</p>
+                                <p className="text-sm dark:text-grey-50 text-grey-700">{name}</p>
                               </div>
                             </SwapSettingButton>
                           );
@@ -339,7 +339,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
               </div>
             </div>
 
-            <div className="text-xs text-v2-lily/50">
+            <div className="text-xs text-grey-400">
               {isMaxPriorityMode ? (
                 <>
                   <p>Jupiter intelligently minimizes and decides the best fee for you.</p>
@@ -353,11 +353,11 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
             <div className="mt-2">
               <div className="flex items-center justify-between mt-4">
                 {isMaxPriorityMode ? (
-                  <p className="text-sm text-white/75 font-[500]">Set Max Cap</p>
+                  <p className="text-sm dark:text-grey-50 text-grey-700 font-[500]">Set Max Cap</p>
                 ) : (
-                  <p className="text-sm text-white/75 font-[500]">Exact Fee</p>
+                  <p className="text-sm dark:text-grey-50 text-grey-700 font-[500]">Exact Fee</p>
                 )}
-                <span className="text-xxs mt-1 text-white/25 font-normal self-end">
+                <span className="text-xxs mt-1 text-grey-400 font-normal self-end">
                   <CoinBalanceUSD
                     tokenInfo={SOL_TOKEN_INFO}
                     amount={unsavedPriorityFee?.toString()}
@@ -394,7 +394,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                         allowedDecimalSeparators={['.', ',']}
                         suffix=" SOL"
                         placeholder={'Enter custom value'}
-                        className={`text-left h-full w-full bg-[#1B1B1E] placeholder:text-white/25 py-4 px-5 text-sm rounded-xl ring-1 ring-white/5 text-white/50 pointer-events-all relative`}
+                        className={`text-left h-full w-full dark:bg-navy-700 bg-light-100 placeholder:text-grey-400 py-4 px-5 text-sm rounded-xl ring-1 ring-white/5 dark:text-grey-50 text-grey-700 pointer-events-all relative focus:outline-none`}
                       />
                     );
                   }}
@@ -404,7 +404,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
             {isPrioritizationFeeLowerThanReferenceFee && (
               <InformationMessage
                 iconSize={24}
-                className="!text-jupiter-primary !px-0"
+                className="!text-orange-500 !px-0"
                 message={
                   'Your current maximum fee is below the market rate. Please raise it to ensure your transactions are processed.'
                 }
@@ -457,8 +457,8 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                   inputFocused.current = true;
                 }}
                 className={classNames(
-                  `flex items-center justify-between cursor-text w-[120px] !h-[42px] text-white/50 bg-[#1B1B1E] pl-2 text-sm relative`,
-                  inputFocused.current ? 'border border-v3-primary rounded-r-xl' : '',
+                  `flex items-center justify-between cursor-text w-[120px] !h-[42px] dark:text-grey-50 text-grey-700 dark:bg-navy-700 bg-light-100 pl-2 text-sm relative`,
+                  inputFocused.current ? 'border border-purple-500 rounded-r-xl' : '',
                 )}
               >
                 <span className="text-xs">
@@ -489,7 +489,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                         }}
                         allowLeadingZeros={false}
                         suffix="%"
-                        className="w-full bg-[#1B1B1E] pr-4 text-sm rounded-lg placeholder:text-v2-lily/25 text-v2-lily/50 text-right pointer-events-all"
+                        className="w-full dark:bg-navy-700 bg-light-100 pr-4 text-sm rounded-lg placeholder:text-grey-400 dark:text-grey-50 text-grey-700 text-right pointer-events-all focus:outline-none"
                         decimalSeparator={detectedSeparator}
                         placeholder={detectedSeparator === ',' ? '0,00%' : '0.00%'}
                       />
@@ -503,7 +503,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
               {inputFocused.current && !isWithinSlippageLimits && (
                 <InformationMessage
                   iconSize={14}
-                  className="!text-jupiter-primary !px-0"
+                  className="!text-orange-500 !px-0"
                   message={`Please set a slippage value that is within ${MINIMUM_SLIPPAGE}% to ${MAXIMUM_SLIPPAGE}%`}
                 />
               )}
@@ -511,7 +511,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
               {slippageSuggestionText && (
                 <InformationMessage
                   iconSize={14}
-                  className="!text-jupiter-primary !px-0"
+                  className="!text-orange-500 !px-0"
                   message={slippageSuggestionText}
                 />
               )}
@@ -538,12 +538,12 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                 onClick={() => form.setValue('asLegacyTransaction', !asLegacyTransactionInput)}
               />
             </div>
-            <p className="mt-2 text-xs text-white/50">
+            <p className="mt-2 text-xs text-grey-400">
               Versioned Tx is a significant upgrade that allows for more advanced routings and better prices!
             </p>
 
             {wallet?.adapter ? (
-              <p className="mt-2 text-xs text-white/50">
+              <p className="mt-2 text-xs text-grey-400">
                 {detectedVerTxSupport
                   ? `Your wallet supports Versioned Tx. and it has been turned on by default.`
                   : `Your wallet does not support Versioned Tx.`}
@@ -572,7 +572,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                 }
               />
             </div>
-            <p className="mt-2 text-xs text-white/50">
+            <p className="mt-2 text-xs text-grey-400">
               {`The strict list contains a smaller set of validated tokens. To see all tokens, toggle "off".`}
             </p>
           </div>

@@ -30,7 +30,7 @@ const JupButton = React.forwardRef(
         return 'p-5 text-md font-semibold';
       }
     })();
-    const background = bgClass || 'text-white bg-[#191B1F] dark:bg-black/50';
+    const background = bgClass || 'text-white border border-transparent dark:bg-purple-500 bg-purple-300';
     return (
       <button
         type={type}
@@ -38,7 +38,7 @@ const JupButton = React.forwardRef(
         className={classNames({
           relative: true,
           'jup-gradient': highlighted,
-          'opacity-50 cursor-not-allowed': disabled,
+          'opacity-70 cursor-not-allowed': disabled,
           [background]: true,
           [className]: true,
           [rounded || 'rounded-xl']: true,

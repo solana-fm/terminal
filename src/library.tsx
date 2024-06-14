@@ -9,7 +9,8 @@ import 'tailwindcss/tailwind.css';
 import JupiterLogo from './icons/JupiterLogo';
 import ChevronDownIcon from './icons/ChevronDownIcon';
 
-const containerId = 'jupiter-terminal';
+let containerId = "";
+// const containerId = 'solanafm-jup-terminal';
 const packageJson = require('../package.json');
 const bundleName = `main-${packageJson.version}`;
 
@@ -83,6 +84,7 @@ const RenderLoadableJupiter = (props: IInit) => {
     if (!loaded) {
       intervalId = setInterval(() => {
         const instance = (window as any).JupiterRenderer?.RenderJupiter;
+        console.log(instance);
         if (instance) {
           setLoaded(true);
         }
@@ -131,8 +133,8 @@ const RenderShell = (props: IInit) => {
   }, [containerClassName, displayMode]);
 
   const onClose = () => {
-    if (window.Jupiter) {
-      window.Jupiter.close();
+    if (window.SFMTerminal) {
+      window.SFMTerminal.close();
     }
   };
 
@@ -244,15 +246,16 @@ async function init(props: IInit) {
     ...restProps
   } = props;
   const targetDiv = document.createElement('div');
+  containerId = `${integratedTargetId}-innner`;
   const instanceExist = document.getElementById(containerId);
-  window.Jupiter.store = store;
+  window.SFMTerminal.store = store;
   store.set(appProps, { ...props, scriptDomain });
 
   // Remove previous instance
   if (instanceExist) {
-    window.Jupiter._instance = null;
+    window.SFMTerminal._instance = null;
     instanceExist.remove();
-    window.Jupiter.root?.unmount();
+    window.SFMTerminal.root?.unmount();
   }
 
   targetDiv.id = containerId;
@@ -271,10 +274,10 @@ async function init(props: IInit) {
 
   // Passthrough
   if (enableWalletPassthrough) {
-    window.Jupiter.enableWalletPassthrough = true;
-    window.Jupiter.onRequestConnectWallet = onRequestConnectWallet;
+    window.SFMTerminal.enableWalletPassthrough = true;
+    window.SFMTerminal.onRequestConnectWallet = onRequestConnectWallet;
   } else {
-    window.Jupiter.enableWalletPassthrough = false;
+    window.SFMTerminal.enableWalletPassthrough = false;
   }
 
   let element;
@@ -286,15 +289,15 @@ async function init(props: IInit) {
 
   const root = createRoot(targetDiv);
   root.render(element);
-  window.Jupiter.root = root;
-  window.Jupiter._instance = element;
+  window.SFMTerminal.root = root;
+  window.SFMTerminal._instance = element;
 
   // Callbacks
-  window.Jupiter.onSwapError = onSwapError;
-  window.Jupiter.onSuccess = onSuccess;
-  window.Jupiter.onFormUpdate = onFormUpdate;
-  window.Jupiter.onScreenUpdate = onScreenUpdate;
-  window.Jupiter.onRequestIxCallback = onRequestIxCallback;
+  window.SFMTerminal.onSwapError = onSwapError;
+  window.SFMTerminal.onSuccess = onSuccess;
+  window.SFMTerminal.onFormUpdate = onFormUpdate;
+  window.SFMTerminal.onScreenUpdate = onScreenUpdate;
+  window.SFMTerminal.onRequestIxCallback = onRequestIxCallback;
 }
 
 const attributes = (document.currentScript as HTMLScriptElement)?.attributes;

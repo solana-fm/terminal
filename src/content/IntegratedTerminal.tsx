@@ -17,7 +17,7 @@ const IntegratedTerminal = (props: {
   const { setShowModal } = useUnifiedWalletContext();
 
   const launchTerminal = useCallback(async () => {
-    window.Jupiter.init({
+    window.SFMTerminal.init({
       displayMode: 'integrated',
       integratedTargetId: 'integrated-terminal',
       endpoint: rpcUrl,
@@ -42,9 +42,9 @@ const IntegratedTerminal = (props: {
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout | undefined = undefined;
-    if (!isLoaded || !window.Jupiter.init) {
+    if (!isLoaded || !window.SFMTerminal.init) {
       intervalId = setInterval(() => {
-        setIsLoaded(Boolean(window.Jupiter.init));
+        setIsLoaded(Boolean(window.SFMTerminal.init));
       }, 500);
     }
 
@@ -55,7 +55,7 @@ const IntegratedTerminal = (props: {
 
   useEffect(() => {
     setTimeout(() => {
-      if (isLoaded && Boolean(window.Jupiter.init)) {
+      if (isLoaded && Boolean(window.SFMTerminal.init)) {
         launchTerminal();
       }
     }, 200);
@@ -63,8 +63,9 @@ const IntegratedTerminal = (props: {
 
   // To make sure passthrough wallet are synced
   useEffect(() => {
-    if (!window.Jupiter.syncProps) return;
-    window.Jupiter.syncProps({ passthroughWalletContextState });
+    console.log(window);
+    if (!window.SFMTerminal.syncProps) return;
+    window.SFMTerminal.syncProps({ passthroughWalletContextState });
   }, [passthroughWalletContextState, props]);
 
   return (
@@ -78,9 +79,15 @@ const IntegratedTerminal = (props: {
             </div>
           ) : null}
 
+          {/* <div
+            id="integrated-terminal"
+            className={`flex h-full w-full max-w-[384px] overflow-auto justify-center dark:bg-dark-900 bg-light-50 rounded-xl ${
+              !isLoaded ? 'hidden' : ''
+            }`}
+          /> */}
           <div
             id="integrated-terminal"
-            className={`flex h-full w-full max-w-[384px] overflow-auto justify-center bg-[#282830] rounded-xl ${
+            className={`flex h-full w-full max-w-[384px] overflow-auto justify-center dark:bg-navy-700 bg-light-100 rounded-xl ${
               !isLoaded ? 'hidden' : ''
             }`}
           />
