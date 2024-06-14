@@ -9,7 +9,8 @@ import 'tailwindcss/tailwind.css';
 import JupiterLogo from './icons/JupiterLogo';
 import ChevronDownIcon from './icons/ChevronDownIcon';
 
-const containerId = 'solanafm-jup-terminal';
+let containerId = "";
+// const containerId = 'solanafm-jup-terminal';
 const packageJson = require('../package.json');
 const bundleName = `main-${packageJson.version}`;
 
@@ -245,6 +246,7 @@ async function init(props: IInit) {
     ...restProps
   } = props;
   const targetDiv = document.createElement('div');
+  containerId = `${integratedTargetId}-innner`;
   const instanceExist = document.getElementById(containerId);
   window.SFMTerminal.store = store;
   store.set(appProps, { ...props, scriptDomain });
