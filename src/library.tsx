@@ -66,24 +66,24 @@ async function loadJupiter() {
     await Promise.all([
       loadRemote(
         'jupiter-load-script-app',
-        `${scriptDomain}/gh/solana-fm/terminal/public/${bundleName}-app.js`,
+        `${scriptDomain}/gh/solana-fm/terminal@fix/styling/public/${bundleName}-app.js`,
         'text/javascript',
       ),
       loadRemote(
         'jupiter-load-styles-tailwind',
-        `${scriptDomain}/gh/solana-fm/terminal/public/${bundleName}-Tailwind.css`,
+        `${scriptDomain}/gh/solana-fm/terminal@fix/styling/public/${bundleName}-Tailwind.css`,
         'stylesheet',
       ),
       loadRemote(
         'jupiter-load-styles-preflight',
-        `${scriptDomain}/gh/solana-fm/terminal/public/scoped-preflight.css`,
+        `${scriptDomain}/gh/solana-fm/terminal@fix/styling/public/scoped-preflight.css`,
         'stylesheet',
       ),
     ]);
     // The sequence matters! the last imported Jupiter.css takes precendent
     loadRemote(
       'jupiter-load-styles-jupiter',
-      `${scriptDomain}/gh/solana-fm/terminal/public/${bundleName}-Jupiter.css`,
+      `${scriptDomain}/gh/solana-fm/terminal@fix/styling/public/${bundleName}-Jupiter.css`,
       'stylesheet',
     );
   } catch (error) {
