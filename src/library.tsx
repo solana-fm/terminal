@@ -23,11 +23,16 @@ const scriptDomain =
       return new URL(url).origin;
     }
     return '';
-  })() || 'https://terminal.jup.ag';
+  })() || 'https://cdn.jsdelivr.net';
+
+  console.log('scriptDomain', scriptDomain);
 
 async function loadRemote(id: string, href: string, type: 'text/javascript' | 'stylesheet') {
   return new Promise((res, rej) => {
+    console.log('id', id);
     const existing = document.getElementById(id) as HTMLLinkElement | null;
+
+    console.log('existing', existing);
 
     if (existing) {
       res({});
