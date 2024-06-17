@@ -60,7 +60,7 @@ const ConfirmationScreen = () => {
             toTokenInfo={toTokenInfo}
             loading={loading}
             showFullDetails
-            containerClassName="dark:bg-dark-700/70 bg-light-400 border-none"
+            containerClassName="dark:bg-dark-700 dark:opacity-70 bg-light-400 border-none"
           />
         ) : null}
       </div>

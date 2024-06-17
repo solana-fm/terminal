@@ -174,7 +174,7 @@ const Form: React.FC<{
         <div className="flex-col">
           <div
             className={classNames(
-              `border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl border transition-shadow ${inputFromFocus ? 'dark:!border-purple-500 !border-purple-300/80 shadow-[0px_0px_10px_2px] shadow-purple-500/50' : ''}`,
+              `border-b border-transparent dark:bg-dark-700 dark:opacity-70 bg-light-400 rounded-xl border transition-shadow ${inputFromFocus ? 'dark:!border-purple-500 !border-purple-300/80 shadow-[0px_0px_10px_2px] shadow-purple-500/50' : ''}`,
               fixedOutputFomMintClass,
             )}
           >
@@ -261,7 +261,7 @@ const Form: React.FC<{
           </div>
 
           <div
-            className={`border-b border-transparent dark:bg-dark-700/70 bg-light-400 rounded-xl  border ${inputToFocus ? '!border-purple-500 !border-purple-300/80 shadow-[0px_0px_10px_2px] shadow-purple-500/50' : ''}`}
+            className={`border-b border-transparent dark:bg-dark-700 dark:opacity-70 bg-light-400 rounded-xl border ${inputToFocus ? '!border-purple-500 !border-purple-300/80 shadow-[0px_0px_10px_2px] shadow-purple-500/50' : ''}`}
           >
             <div className="px-x border-transparent rounded-xl">
               <div>

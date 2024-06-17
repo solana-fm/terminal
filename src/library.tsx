@@ -93,7 +93,7 @@ async function loadJupiter() {
 }
 
 const defaultStyles: CSSProperties = {
-  zIndex: 50,
+  zIndex: 40,
 };
 
 const RenderLoadableJupiter = (props: IInit) => {
@@ -149,7 +149,7 @@ const RenderShell = (props: IInit) => {
         containerClassName || ''
       }`;
     } else if (displayMode === 'integrated' || displayMode === 'widget') {
-      return 'flex flex-col h-full w-full overflow-auto text-black relative webkit-scrollbar';
+      return 'flex flex-col h-full w-full overflow-auto text-black relative';
     }
   }, [containerClassName, displayMode]);
 
