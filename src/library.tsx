@@ -14,27 +14,24 @@ let containerId = '';
 const packageJson = require('../package.json');
 const bundleName = `main-${packageJson.version}`;
 
-// const scriptDomain =
-//   (() => {
-//     if (typeof window === 'undefined') return '';
+const scriptDomain =
+  (() => {
+    if (typeof window === 'undefined') return '';
 
-//     const url = (document.currentScript as HTMLScriptElement)?.src;
-//     if (url) {
-//       return new URL(url).origin;
-//     }
-//     return '';
-//   })() || 'https://cdn.jsdelivr.net';
-
-const scriptDomain = 'https://raw.githubusercontent.com';
+    const url = (document.currentScript as HTMLScriptElement)?.src;
+    if (url) {
+      return new URL(url).origin;
+    }
+    return '';
+  })() || 'https://cdn.jsdelivr.net';
 
 console.log('scriptDomain', scriptDomain);
 
 async function loadRemote(id: string, href: string, type: 'text/javascript' | 'stylesheet') {
   return new Promise((res, rej) => {
-    console.log('id', id);
     const existing = document.getElementById(id) as HTMLLinkElement | null;
 
-    console.log('existing', existing);
+    console.log('existing2', existing);
 
     if (existing) {
       res({});
@@ -68,24 +65,24 @@ async function loadJupiter() {
     await Promise.all([
       loadRemote(
         'jupiter-load-script-app',
-        `${scriptDomain}/solana-fm/terminal/fix/styling/public/${bundleName}-app.js`,
+        `${scriptDomain}/solana-fm/terminal@fix/styling/public/${bundleName}-app.js`,
         'text/javascript',
       ),
       loadRemote(
         'jupiter-load-styles-tailwind',
-        `${scriptDomain}/solana-fm/terminal/fix/styling/public/${bundleName}-Tailwind.css`,
+        `${scriptDomain}/solana-fm/terminal@fix/styling/public/${bundleName}-Tailwind.css`,
         'stylesheet',
       ),
       loadRemote(
         'jupiter-load-styles-preflight',
-        `${scriptDomain}/solana-fm/terminal/fix/styling/public/scoped-preflight.css`,
+        `${scriptDomain}/solana-fm/terminal@fix/styling/public/scoped-preflight.css`,
         'stylesheet',
       ),
     ]);
     // The sequence matters! the last imported Jupiter.css takes precendent
     loadRemote(
       'jupiter-load-styles-jupiter',
-      `${scriptDomain}/solana-fm/terminal/fix/styling/public/${bundleName}-Jupiter.css`,
+      `${scriptDomain}/solana-fm/terminal@fix/styling/public/${bundleName}-Jupiter.css`,
       'stylesheet',
     );
   } catch (error) {
