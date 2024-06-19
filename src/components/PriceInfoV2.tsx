@@ -89,7 +89,7 @@ const PriceInfoV2 = ({
     const { priorityFee } = usePrioritizationFee();
 
     return (
-        <div className={classNames('mt-4 space-y-4 rounded-xl p-3', containerClassName)}>
+        <div className={classNames('mt-4 flex flex-col gap-5 rounded-xl p-3', containerClassName)}>
             <div className="flex items-center justify-between text-xs">
                 <div className="text-grey-400">{<span>Rate</span>}</div>
                 {JSBI.greaterThan(rateParams.inAmount, ZERO) && JSBI.greaterThan(rateParams.outAmount, ZERO) ? (
