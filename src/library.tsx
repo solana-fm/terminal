@@ -25,14 +25,9 @@ const scriptDomain =
     return '';
   })() || 'https://cdn.jsdelivr.net';
 
-  console.log('scriptDomain', scriptDomain);
-
 async function loadRemote(id: string, href: string, type: 'text/javascript' | 'stylesheet') {
   return new Promise((res, rej) => {
-    console.log('id', id);
     const existing = document.getElementById(id) as HTMLLinkElement | null;
-
-    console.log('existing', existing);
 
     if (existing) {
       res({});
@@ -93,7 +88,7 @@ async function loadJupiter() {
 }
 
 const defaultStyles: CSSProperties = {
-  zIndex: 50,
+  zIndex: 40,
 };
 
 const RenderLoadableJupiter = (props: IInit) => {
@@ -145,9 +140,8 @@ const RenderShell = (props: IInit) => {
   const contentClassName = useMemo(() => {
     // Default Modal
     if (!displayMode || displayMode === 'modal') {
-      return `flex flex-col h-screen w-screen max-h-[90vh] md:max-h-[600px] max-w-[360px] overflow-auto text-black relative bg-v3-modal rounded-lg webkit-scrollbar ${
-        containerClassName || ''
-      }`;
+      return `flex flex-col h-screen w-screen max-h-[90vh] md:max-h-[600px] max-w-[360px] overflow-auto text-black relative bg-v3-modal rounded-lg webkit-scrollbar ${containerClassName || ''
+        }`;
     } else if (displayMode === 'integrated' || displayMode === 'widget') {
       return 'flex flex-col h-full w-full overflow-auto text-black relative webkit-scrollbar';
     }
@@ -238,11 +232,9 @@ const RenderWidgetShell = (props: IInit) => {
 
       <div
         id="integrated-terminal"
-        className={`absolute overflow-hidden ${
-          classes.contentClassName
-        } flex flex-col w-[90vw] h-[600px] max-w-[384px] max-h-[75vh] rounded-2xl bg-v3-modal transition-opacity duration-300 shadow-2xl ${
-          !isOpen ? '!h-0 !w-0 opacity-0' : 'opacity-100'
-        }`}
+        className={`absolute overflow-hidden ${classes.contentClassName
+          } flex flex-col w-[90vw] h-[600px] max-w-[384px] max-h-[75vh] rounded-2xl bg-v3-modal transition-opacity duration-300 shadow-2xl ${!isOpen ? '!h-0 !w-0 opacity-0' : 'opacity-100'
+          }`}
       >
         <RenderLoadableJupiter {...props} />
       </div>
@@ -267,7 +259,7 @@ async function init(props: IInit) {
     ...restProps
   } = props;
   const targetDiv = document.createElement('div');
-  containerId = `${integratedTargetId}-innner`;
+  containerId = `${integratedTargetId}-inner`;
   const instanceExist = document.getElementById(containerId);
   window.Jupiter.store = store;
   store.set(appProps, { ...props, scriptDomain });
