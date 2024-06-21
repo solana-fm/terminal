@@ -185,14 +185,14 @@ const Form: React.FC<{
                   <div className="flex justify-between items-center">
                     <button
                       type="button"
-                      className={`py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent  dark:text-grey-50 text-grey-700 gap-3 ${!fixedInputMint ? 'dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 transition-shadow duration-200' : ''}`}
+                      className={`py-2 px-5 rounded-xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent dark:text-grey-50 text-grey-700 gap-3 ${!fixedInputMint ? 'dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 transition-shadow duration-200' : ''}`}
                       disabled={fixedInputMint}
                       onClick={onClickSelectFromMint}
                     >
                       <div className="h-5 w-5">
                         <TokenIcon tokenInfo={fromTokenInfo} width={20} height={20} />
                       </div>
-                      <div className="ml-4 font-semibold" translate="no">
+                      <div className="font-semibold" translate="no">
                         {fromTokenInfo?.symbol}
                       </div>
                       {fixedInputMint ? null : (
@@ -259,22 +259,22 @@ const Form: React.FC<{
           </div>
 
           <div
-            className={`border-b border-transparent dark:bg-dark-700 bg-opacity-70 bg-light-400 rounded-xl  border ${inputToFocus ? '!border-purple-500 !border-purple-300/80 shadow-[0px_0px_10px_2px] shadow-purple-500/50' : ''}`}
+            className={`border-b border-transparent dark:bg-dark-700 bg-opacity-70 bg-light-400 rounded-xl border ${inputToFocus ? '!border-purple-500 !border-purple-300/80 shadow-[0px_0px_10px_2px] shadow-purple-500/50' : ''}`}
           >
             <div className="px-x border-transparent rounded-xl">
               <div>
-                <div className="py-5 px-4 flex flex-col dark:text-white">
+                <div className="py-2 px-5 flex flex-col dark:text-white">
                   <div className="flex justify-between items-center">
                     <button
                       type="button"
-                      className={`py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent  dark:text-grey-50 text-grey-700 gap-3 ${!fixedOutputMint ? 'dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 transition-shadow duration-200' : ''}`}
+                      className={`py-2 px-3 rounded-xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent dark:text-grey-50 text-grey-700 gap-3 ${!fixedOutputMint ? 'dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 transition-shadow duration-200' : ''}`}
                       disabled={fixedOutputMint}
                       onClick={onClickSelectToMint}
                     >
                       <div className="h-5 w-5">
                         <TokenIcon tokenInfo={toTokenInfo} width={20} height={20} />
                       </div>
-                      <div className="ml-4 font-semibold" translate="no">
+                      <div className="font-semibold" translate="no">
                         {toTokenInfo?.symbol}
                       </div>
 
