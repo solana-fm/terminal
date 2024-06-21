@@ -189,7 +189,7 @@ const SwappingScreen = () => {
           <div className="mt-4 dark:bg-dark-700/70 bg-light-400 rounded-xl overflow-y-auto w-full webkit-scrollbar py-4 max-h-[260px]">
             <div className="mt-2 flex flex-col items-center justify-center text-center px-4">
               <p className="text-xs font-semibold dark:text-grey-50 text-grey-700">
-                Swapped {fromLamports(inputAmount, fromTokenInfo.decimals)} {fromTokenInfo.symbol} to passssss
+                Swapped {fromLamports(inputAmount, fromTokenInfo.decimals)} {fromTokenInfo.symbol} to
               </p>
               <p className="text-2xl font-semibold dark:text-grey-50 text-grey-700">
                 {fromLamports(outputAmount, toTokenInfo.decimals)} {toTokenInfo.symbol}
