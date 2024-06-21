@@ -24,13 +24,13 @@ const JupButton = React.forwardRef(
         return 'px-4 py-2.5 text-xs';
       }
       if (size === 'md') {
-        return 'px-4 py-3 text-sm font-semibold';
+        return 'px-4 py-3 text-sm font-medium';
       }
       if (size === 'lg') {
-        return 'p-5 text-md font-semibold';
+        return 'p-5 text-md font-medium';
       }
     })();
-    const background = bgClass || 'text-white border border-transparent dark:bg-purple-500 bg-purple-300';
+    const background = bgClass || 'text-white border-none dark:bg-purple-500 bg-purple-300';
     return (
       <button
         type={type}
@@ -41,7 +41,7 @@ const JupButton = React.forwardRef(
           'opacity-70 cursor-not-allowed': disabled,
           [background]: true,
           [className]: true,
-          [rounded || 'rounded-xl']: true,
+          [rounded || 'rounded-md']: true,
         })}
         disabled={disabled}
         onClick={onClick}

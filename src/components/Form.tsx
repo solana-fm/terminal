@@ -28,6 +28,7 @@ import SwitchPairButton from './SwitchPairButton';
 import useTimeDiff from './useTimeDiff/useTimeDiff';
 import { Skeleton } from './Skeleton';
 import PriceInfoV2 from './PriceInfoV2';
+import JupiterLogo from 'src/icons/JupiterLogo';
 
 const Form: React.FC<{
   onSubmit: () => void;
@@ -184,7 +185,7 @@ const Form: React.FC<{
                   <div className="flex justify-between items-center">
                     <button
                       type="button"
-                      className={`py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent  dark:text-grey-50 text-grey-700 gap-3 ${!fixedInputMint ? "dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 transition-shadow duration-200" : ""}`}
+                      className={`py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent  dark:text-grey-50 text-grey-700 gap-3 ${!fixedInputMint ? 'dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 transition-shadow duration-200' : ''}`}
                       disabled={fixedInputMint}
                       onClick={onClickSelectFromMint}
                     >
@@ -253,10 +254,7 @@ const Form: React.FC<{
 
           <div className={'my-2'}>
             {hasFixedMint ? null : (
-              <SwitchPairButton
-                onClick={onClickSwitchPair}
-                className={classNames(fixedOutputFomMintClass)}
-              />
+              <SwitchPairButton onClick={onClickSwitchPair} className={classNames(fixedOutputFomMintClass)} />
             )}
           </div>
 
@@ -269,7 +267,7 @@ const Form: React.FC<{
                   <div className="flex justify-between items-center">
                     <button
                       type="button"
-                      className={`py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent  dark:text-grey-50 text-grey-700 gap-3 ${!fixedOutputMint ? "dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 transition-shadow duration-200" : ""}`}
+                      className={`py-2 px-3 rounded-2xl flex items-center group dark:bg-dark-500 bg-light-500 border border-transparent  dark:text-grey-50 text-grey-700 gap-3 ${!fixedOutputMint ? 'dark:hover:bg-purple-500/30 hover:bg-purple-100/40 dark:hover:!border-purple-500/80 hover:!border-purple-300/80 hover:shadow-[0px_0px_10px_2px] hover:shadow-purple-500/50 disabled:dark:hover:bg-dark-500 disabled:hover:bg-light-500 transition-shadow duration-200' : ''}`}
                       disabled={fixedOutputMint}
                       onClick={onClickSelectToMint}
                     >
@@ -356,7 +354,7 @@ const Form: React.FC<{
         {walletPublicKey ? <FormError errors={errors} /> : null}
       </div>
 
-      <div className="w-full px-2">
+      <div className="w-full flex flex-col gap-2 px-2">
         {!walletPublicKey ? (
           <UnifiedWalletButton
             buttonClassName="!bg-transparent"
@@ -369,7 +367,7 @@ const Form: React.FC<{
         ) : (
           <JupButton
             size="lg"
-            className="w-full mt-4 disabled:opacity-50 text-purple-50"
+            className={`w-full mt-4 disabled:opacity-50 text-purple-50 ${loading || error ? 'dark:bg-purple-500 bg-purple-300' : 'bg-gradient-to-r from-[#8057FF] to-[#D84E76]'}`}
             type="button"
             onClick={onSubmit}
             disabled={isDisabled || loading}
@@ -379,10 +377,18 @@ const Form: React.FC<{
             ) : error ? (
               <span className="text-sm ">Error fetching route. Try changing your input</span>
             ) : (
-              <span className="">Swap</span>
+              <span className="">{fixedOutputMint ? 'Buy fmSOL' : fixedInputMint ? 'Withdraw fmSOL' : 'Swap'}</span>
             )}
           </JupButton>
         )}
+
+        <div className="w-full flex flex-row gap-4 items-center justify-center mt-4">
+          <span className="text-xs dark:text-grey-50 text-grey-700 font-extralight">Powered by</span>
+          <JupiterLogo width={20} height={20} />
+          <span className="font-semibold text-xs dark:text-grey-50 text-grey-700">Jupiter</span>
+        </div>
+
+        <hr className="w-full dark:border-navy-600 border-navy-50 h-px mt-4" />
 
         {/* refactored SFM version */}
         {/* will do checking directly inside */}
