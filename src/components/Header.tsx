@@ -33,7 +33,7 @@ const Header: React.FC<{ setIsWalletModalOpen(toggle: boolean): void }> = ({ set
           <JupiterLogo width={24} height={24} />
           <span className="font-bold text-sm dark:text-grey-50 text-grey-700">Jupiter</span>
         </a> */}
-        <SolanaFMLogoSVG width={24} height={24} className="text-purple-500" />
+        {/* <SolanaFMLogoSVG width={24} height={24} className="text-purple-500" /> */}
 
         <div className="flex space-x-1 items-center">
           <button
