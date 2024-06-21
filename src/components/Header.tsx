@@ -9,12 +9,16 @@ import JupiterLogo from '../icons/JupiterLogo';
 import { WalletButton } from './WalletComponents';
 import SwapSettingsModal from './SwapSettingsModal/SwapSettingsModal';
 import { SolanaFMLogoSVG } from 'src/icons/SolanaFMLogoSVG';
+import { useAtom } from 'jotai';
+import { appProps } from 'src/library';
 
 const Header: React.FC<{ setIsWalletModalOpen(toggle: boolean): void }> = ({ setIsWalletModalOpen }) => {
   const {
     form,
     jupiter: { refresh },
   } = useSwapContext();
+  const [atom] = useAtom(appProps);
+
   const [showSlippapgeSetting, setShowSlippageSetting] = useState(false);
 
   const jupiterDirectLink = useMemo(() => {
@@ -28,12 +32,12 @@ const Header: React.FC<{ setIsWalletModalOpen(toggle: boolean): void }> = ({ set
 
   return (
     <div className="mt-2 h-7 pl-3 pr-2">
-      <div className="w-full flex items-center justify-between">
+      <div className={`w-full flex items-center ${atom?.showSfmLogo ? 'justify-between' : 'justify-end'}`}>
         {/* <a href={jupiterDirectLink} target={'_blank'} rel="noreferrer noopener" className="flex items-center space-x-2">
           <JupiterLogo width={24} height={24} />
           <span className="font-bold text-sm dark:text-grey-50 text-grey-700">Jupiter</span>
         </a> */}
-        {/* <SolanaFMLogoSVG width={24} height={24} className="text-purple-500" /> */}
+        {atom?.showSfmLogo && <SolanaFMLogoSVG width={24} height={24} className="text-purple-500" />}
 
         <div className="flex space-x-1 items-center">
           <button

@@ -104,6 +104,9 @@ export interface IInit {
   /** In case additional styling is needed for Terminal container */
   containerClassName?: string;
 
+  /** In case additional styling is needed for sfm logo in header */
+  showSfmLogo?: boolean;
+
   /** When true, wallet connection are handled by your dApp, and use `syncProps()` to syncronise wallet state with Terminal */
   enableWalletPassthrough?: boolean;
   /** Optional, if wallet state is ready, you can pass it in here, or just use `syncProps()` */
