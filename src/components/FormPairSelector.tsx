@@ -77,7 +77,7 @@ const FormPairSelector = ({
   useEffect(() => inputRef.current?.focus(), [inputRef]);
 
   return (
-    <div className="flex flex-col h-full w-full py-4 px-2 dark:bg-dark-900 bg-light-50">
+    <div className="flex flex-col h-full w-full p-4 dark:bg-dark-900 bg-light-50">
       <div className="flex w-full justify-between">
         <div className="dark:text-grey-50 text-grey-700 fill-current w-6 h-6 cursor-pointer" onClick={onClose}>
           <LeftArrowIcon width={24} height={24} />
@@ -89,7 +89,7 @@ const FormPairSelector = ({
       </div>
 
       <div
-        className="flex px-5 mt-4 w-[98%] rounded-xl dark:bg-navy-700 bg-light-100"
+        className="flex px-6 mt-4 w-[98%] rounded-xl dark:bg-navy-700 bg-light-100"
         style={{ height: SEARCH_BOX_HEIGHT, maxHeight: SEARCH_BOX_HEIGHT }}
       >
         <SearchIcon />
@@ -104,7 +104,7 @@ const FormPairSelector = ({
         />
       </div>
 
-      <div className="mt-2" style={{ flexGrow: 1 }}>
+      <div className="mt-2 rounded-md" style={{ flexGrow: 1 }}>
         {searchResult.length > 0 && (
           <AutoSizer>
             {({ height, width }: { height: number; width: number }) => {
@@ -119,7 +119,7 @@ const FormPairSelector = ({
                     searchResult,
                     onSubmit,
                   }}
-                  className={classNames('overflow-y-scroll mr-1 min-h-[12rem] px-5 webkit-scrollbar')}
+                  className={classNames('overflow-y-scroll mr-1 min-h-[12rem] px-5')}
                 >
                   {rowRenderer}
                 </FixedSizeList>

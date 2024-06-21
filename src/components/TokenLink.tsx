@@ -10,11 +10,11 @@ const TokenLink: React.FC<{ tokenInfo: TokenInfo }> = (({ tokenInfo }) => {
     <a
       target="_blank"
       rel="noreferrer"
-      className="flex items-center bg-black/25 text-white/75 px-2 py-0.5 space-x-1 rounded cursor-pointer"
+      className="flex items-center text-grey-400 px-2 py-0.5 space-x-1 rounded cursor-pointer hover:underline"
       href={getTokenExplorer(tokenInfo.address)}
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="text-xxs">{shortenAddress(tokenInfo.address)}</div>
+      <div className="text-[11px]">{shortenAddress(tokenInfo.address)}</div>
       <ExternalIcon />
     </a>
   );
