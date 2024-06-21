@@ -28,7 +28,7 @@ const Content = () => {
   const [isMessageClosed, setIsMessageClosed] = useState(false);
 
   return (
-    <div className="relative h-full min-h-[530px]">
+    <div className="relative h-full min-h-[520px]">
       {screen === 'Initial' ? (
         <>
           <Header setIsWalletModalOpen={setIsWalletModalOpen} />
@@ -40,7 +40,7 @@ const Content = () => {
       {screen === 'Swapping' ? <SwappingScreen /> : null}
 
       {!isMessageClosed && message ? (
-        <div className="absolute bottom-1 px-3 py-2 w-full">
+        <div className="absolute bottom-0 px-3 py-2 w-full">
           <div className="bg-orange-300 rounded-xl flex items-center justify-between px-3 py-2">
             <div className="pr-2">{message}</div>
             <div className="cursor-pointer" onClick={() => setIsMessageClosed(true)}>
