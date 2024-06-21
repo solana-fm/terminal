@@ -14,7 +14,7 @@ const FormPairRow: React.FC<{
   style: CSSProperties;
   onSubmit(item: TokenInfo): void;
 }> = ({ item, style, onSubmit }) => {
-  const isUnknown = useMemo(() => item.tags?.length === 0 || item.tags?.includes('unknown'), [item.tags])
+  const isUnknown = useMemo(() => item.tags?.length === 0 || item.tags?.includes('unknown'), [item.tags]);
 
   const { accounts } = useAccounts();
   const { tokenPriceMap } = useUSDValueProvider();
@@ -26,29 +26,21 @@ const FormPairRow: React.FC<{
 
     const totalAValue = new Decimal(tokenPrice).mul(balance);
     return totalAValue;
-  }, [accounts, item.address, tokenPriceMap])
+  }, [accounts, item.address, tokenPriceMap]);
 
   return (
-    <li
-      className={`cursor-pointer list-none `}
-      style={{ maxHeight: PAIR_ROW_HEIGHT, height: PAIR_ROW_HEIGHT, ...style }}
-      translate="no"
-    >
+    <li className={`cursor-pointer list-none h-full border-b dark:border-navy-600 border-navy-50`} style={style} translate="no">
       <div
-        className="flex items-center rounded-xl space-x-4 my-2 p-3 justify-between dark:bg-navy-700 bg-light-100 dark:hover:bg-navy-600 hover:bg-light-400"
+        className="flex flex-row gap-4 items-center px-5 py-3 justify-between dark:hover:bg-navy-600 hover:bg-light-400 h-full"
         onClick={() => onSubmit(item)}
       >
-        <div className="flex-shrink-0">
-          <div className="h-6 w-6 rounded-full">
-            <TokenIcon tokenInfo={item} width={24} height={24} />
-          </div>
+        <div className="h-7 w-7 rounded-full shrink-0">
+          <TokenIcon tokenInfo={item} width={28} height={28} />
         </div>
 
         <div className="flex-1 min-w-0">
-          <div className='flex flex-row space-x-2'>
-            <p className="text-sm dark:text-grey-50 text-grey-700 truncate">
-              {item.symbol}
-            </p>
+          <div className="flex flex-row items-center space-x-2">
+            <p className="text-sm font-medium dark:text-grey-50 text-grey-700 truncate">{item.symbol}</p>
             <TokenLink tokenInfo={item} />
           </div>
 
@@ -56,15 +48,13 @@ const FormPairRow: React.FC<{
             <CoinBalance mintAddress={item.address} />
 
             {totalUsdValue && totalUsdValue.gt(0.01) ? (
-              <span className='ml-1'>
-                | ${totalUsdValue.toFixed(2)}
-              </span>
+              <span className="ml-1">| ${totalUsdValue.toFixed(2)}</span>
             ) : null}
           </div>
         </div>
 
         {isUnknown ? (
-          <p className="ml-auto border rounded-md text-xxs py-[1px] px-1 border-warning text-warning">
+          <p className="ml-auto text-xs py-[1px] px-1 text-orange-300">
             <span>Unknown</span>
           </p>
         ) : null}
