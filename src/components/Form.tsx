@@ -336,9 +336,9 @@ const Form: React.FC<{
             </div>
           </div>
 
-          {loading ? (
-            <Skeleton className="w-[250px] h-5 mt-2" />
-          ) : route?.quoteResponse ? (
+          {loading && form.fromValue ? (
+            <Skeleton className="w-[250px] h-4 mt-2" />
+          ) : route?.quoteResponse && form.fromValue ? (
             <div className="flex items-center mt-2 text-xs space-x-1">
               <div className="dark:bg-dark-500 bg-light-500 rounded-xl px-2 py-1 dark:text-white/50 text-white flex items-center space-x-1">
                 <RoutesSVG width={7} height={9} />
@@ -348,7 +348,10 @@ const Form: React.FC<{
                 {marketRoutes}
               </span>
             </div>
-          ) : null}
+          ) : (
+            // add fake height to prevent button from moving up and down
+            <div className='h-4 mt-2'></div>
+          )}
         </div>
 
         {walletPublicKey ? <FormError errors={errors} /> : null}
