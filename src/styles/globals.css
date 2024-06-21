@@ -38,18 +38,6 @@
   display: none;
 }
 
-/* Custom scroll bar */
-.webkit-scrollbar::-webkit-scrollbar {
-  width: 8px;
-}
-
-.webkit-scrollbar::-webkit-scrollbar-thumb {
-  margin: 2px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background: #979797;
-}
-
 #jupiter-terminal .jup-gradient::before {
   content: '';
   position: absolute;
