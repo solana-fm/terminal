@@ -29,6 +29,8 @@ import useTimeDiff from './useTimeDiff/useTimeDiff';
 import { Skeleton } from './Skeleton';
 import PriceInfoV2 from './PriceInfoV2';
 import JupiterLogo from 'src/icons/JupiterLogo';
+import { useAtom } from 'jotai';
+import { appProps } from 'src/library';
 
 const Form: React.FC<{
   onSubmit: () => void;
@@ -49,14 +51,23 @@ const Form: React.FC<{
     jupiter: { quoteResponseMeta: route, loading, error, refresh },
   } = useSwapContext();
   const [hasExpired, timeDiff] = useTimeDiff();
+  const [atom] = useAtom(appProps);
+  const isTerminalInDOM = atom?.integratedTargetId ? Boolean(document.getElementById(atom?.integratedTargetId)) : false;
   const [inputFromFocus, setInputFromFocus] = useState<boolean>(false);
   const [inputToFocus, setInputToFocus] = useState<boolean>(false);
+  
   useEffect(() => {
-    if (hasExpired && (form.fromValue || form.toValue)) {
+    if (hasExpired && isTerminalInDOM && (form.fromValue || form.toValue)) {
       refresh();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable2e-next-line react-hooks/exhaustive-deps
   }, [hasExpired]);
+
+  useEffect(() => {
+    if(!isTerminalInDOM) {
+      setForm((form) => ({ ...form, fromValue: '', toValue: '' }));
+    }
+  },[isTerminalInDOM]);
 
   const walletPublicKey = useMemo(() => publicKey?.toString(), [publicKey]);
 
