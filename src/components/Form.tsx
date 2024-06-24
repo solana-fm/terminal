@@ -55,19 +55,20 @@ const Form: React.FC<{
   const isTerminalInDOM = atom?.integratedTargetId ? Boolean(document.getElementById(atom?.integratedTargetId)) : false;
   const [inputFromFocus, setInputFromFocus] = useState<boolean>(false);
   const [inputToFocus, setInputToFocus] = useState<boolean>(false);
-  
+
   useEffect(() => {
     if (hasExpired && isTerminalInDOM && (form.fromValue || form.toValue)) {
       refresh();
-    }
-    // eslint-disable2e-next-line react-hooks/exhaustive-deps
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasExpired]);
 
   useEffect(() => {
-    if(!isTerminalInDOM) {
+    if (!isTerminalInDOM) {
       setForm((form) => ({ ...form, fromValue: '', toValue: '' }));
-    }
-  },[isTerminalInDOM]);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTerminalInDOM]);
 
   const walletPublicKey = useMemo(() => publicKey?.toString(), [publicKey]);
 
@@ -244,7 +245,7 @@ const Form: React.FC<{
                             'cursor-pointer': swapMode !== 'ExactOut',
                           },
                         )}
-                        // onClick={onClickMax}
+                      // onClick={onClickMax}
                       >
                         <WalletIcon width={10} height={10} />
                         <CoinBalance mintAddress={fromTokenInfo.address} />

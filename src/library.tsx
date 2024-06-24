@@ -135,7 +135,7 @@ const RenderShell = (props: IInit) => {
     } else if (displayMode === 'integrated' || displayMode === 'widget') {
       return `flex items-center justify-center w-full h-full ${containerClassName || ''}`;
     }
-  }, [displayMode]);
+  }, [displayMode, containerClassName]);
 
   const contentClassName = useMemo(() => {
     // Default Modal
