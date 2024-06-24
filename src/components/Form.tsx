@@ -37,7 +37,7 @@ const Form: React.FC<{
   setIsWalletModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ onSubmit, isDisabled, setSelectPairSelector, setIsWalletModalOpen }) => {
   const { publicKey } = useWalletPassThrough();
-  const { accounts } = useAccounts();
+  // const { accounts } = useAccounts();
   const {
     form,
     setForm,
