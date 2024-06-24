@@ -52,7 +52,7 @@ const Form: React.FC<{
   const [inputFromFocus, setInputFromFocus] = useState<boolean>(false);
   const [inputToFocus, setInputToFocus] = useState<boolean>(false);
   useEffect(() => {
-    if (hasExpired) {
+    if (hasExpired && (form.fromValue || form.toValue)) {
       refresh();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
