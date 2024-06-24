@@ -214,7 +214,11 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
   );
 
   return (
-    <div className={classNames('w-full rounded-xl flex flex-col dark:bg-dark-900 bg-light-50 dark:text-grey-50 text-grey-700 shadow-xl max-h-[90%]')}>
+    <div
+      className={classNames(
+        'w-full rounded-xl flex flex-col dark:bg-dark-900 bg-light-50 dark:text-grey-50 text-grey-700 shadow-xl max-h-[90%]',
+      )}
+    >
       <div className="flex justify-between items-center p-4 border-b border-white/10">
         <div className="text-sm font-semibold">
           <span>Swap Settings</span>
@@ -231,13 +235,13 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
         <div>
           {/**************************** PRIORTY *****************************/}
           <div className={classNames('mt-2 px-5')}>
-            <div className="flex items-center text-sm font-semibold">
-              <span>Global Priority Fee</span>
+            <div className="flex items-center">
+              <span className="text-sm font-semibold">Global Priority Fee</span>
               <Tooltip
                 variant="dark"
                 className="!left-0 !top-16 w-[50%]"
                 content={
-                  <span className="flex rounded-lg text-xs dark:text-grey-50 text-grey-700 ">
+                  <span className="flex rounded-lg text-xs dark:text-grey-50 text-grey-500">
                     The priority fee is paid to the Solana network. This additional fee helps boost how a transaction is
                     prioritized against others, resulting in faster transaction execution times.
                   </span>
@@ -272,8 +276,8 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                                 idx === 0
                                   ? 'left'
                                   : idx === Object.keys(PRIORITY_MODE_MAP).length - 1
-                                  ? 'right'
-                                  : undefined
+                                    ? 'right'
+                                    : undefined
                               }
                               highlighted={value === level}
                               onClick={() => {
@@ -317,8 +321,8 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                                 idx === 0
                                   ? 'left'
                                   : idx === Object.keys(PRIORITY_LEVEL_MAP).length - 1
-                                  ? 'right'
-                                  : undefined
+                                    ? 'right'
+                                    : undefined
                               }
                               highlighted={value === level}
                               onClick={() => {
@@ -346,7 +350,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
                   <p>Set a max cap to prevent overpaying.</p>
                 </>
               ) : (
-                <p className='mt-2'>Jupiter will use the exact fee you set.</p>
+                <p className="mt-2">Jupiter will use the exact fee you set.</p>
               )}
             </div>
 
@@ -509,11 +513,7 @@ const SwapSettingsModal: React.FC<{ closeModal: () => void }> = ({ closeModal })
               )}
 
               {slippageSuggestionText && (
-                <InformationMessage
-                  iconSize={14}
-                  className="!text-orange-500 !px-0"
-                  message={slippageSuggestionText}
-                />
+                <InformationMessage iconSize={14} className="!text-orange-500 !px-0" message={slippageSuggestionText} />
               )}
             </div>
 
