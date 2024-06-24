@@ -84,30 +84,30 @@ const Form: React.FC<{
     setForm((form) => ({ ...form, toValue: value }));
   };
 
-  const balance = useMemo(() => {
-    return fromTokenInfo ? accounts[fromTokenInfo.address]?.balance || 0 : 0;
-  }, [accounts, fromTokenInfo]);
+  // const balance = useMemo(() => {
+  //   return fromTokenInfo ? accounts[fromTokenInfo.address]?.balance || 0 : 0;
+  // }, [accounts, fromTokenInfo]);
 
-  const onClickMax = useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      e.preventDefault();
+  // const onClickMax = useCallback(
+  //   (e: React.MouseEvent<HTMLElement>) => {
+  //     e.preventDefault();
 
-      if (!balance || swapMode === 'ExactOut') return;
+  //     if (!balance || swapMode === 'ExactOut') return;
 
-      if (fromTokenInfo?.address === WRAPPED_SOL_MINT.toBase58()) {
-        setForm((prev) => ({
-          ...prev,
-          fromValue: String(balance > MINIMUM_SOL_BALANCE ? (balance - MINIMUM_SOL_BALANCE).toFixed(6) : 0),
-        }));
-      } else {
-        setForm((prev) => ({
-          ...prev,
-          fromValue: String(balance),
-        }));
-      }
-    },
-    [balance, fromTokenInfo?.address, setForm, swapMode],
-  );
+  //     if (fromTokenInfo?.address === WRAPPED_SOL_MINT.toBase58()) {
+  //       setForm((prev) => ({
+  //         ...prev,
+  //         fromValue: String(balance > MINIMUM_SOL_BALANCE ? (balance - MINIMUM_SOL_BALANCE).toFixed(6) : 0),
+  //       }));
+  //     } else {
+  //       setForm((prev) => ({
+  //         ...prev,
+  //         fromValue: String(balance),
+  //       }));
+  //     }
+  //   },
+  //   [balance, fromTokenInfo?.address, setForm, swapMode],
+  // );
 
   const onClickSwitchPair = () => {
     setForm((prev) => ({
@@ -233,7 +233,7 @@ const Form: React.FC<{
                             'cursor-pointer': swapMode !== 'ExactOut',
                           },
                         )}
-                        onClick={onClickMax}
+                        // onClick={onClickMax}
                       >
                         <WalletIcon width={10} height={10} />
                         <CoinBalance mintAddress={fromTokenInfo.address} />
