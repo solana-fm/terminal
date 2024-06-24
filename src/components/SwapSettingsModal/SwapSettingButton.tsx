@@ -27,17 +27,17 @@ const SwapSettingButton = ({
     return '';
   })();
 
-  const borderClassName = useMemo(() => {
-    if (idx > 0 && idx < itemsCount) return 'border-l dark:border-navy-600 border-navy-50';
-  }, [idx, itemsCount]);
+  // const borderClassName = useMemo(() => {
+  //   if (idx > 0 && idx < itemsCount) return 'border-l dark:border-navy-600 border-navy-50';
+  // }, [idx, itemsCount]);
 
   return (
     <button
       type="button"
       className={classNames(
         '!h-[42px] relative border border-transparent',
-        borderClassName,
-        highlighted ? ` ${roundBorderClass} !border-purple-500 dark:bg-purple-500/30 bg-purple-100/40` : '',
+        'border-l dark:border-navy-600 border-navy-50',
+        highlighted ? ` ${roundBorderClass}  !border-purple-500 dark:bg-purple-500/30 bg-purple-100/40` : '',
         classes,
         className,
       )}
