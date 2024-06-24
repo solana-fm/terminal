@@ -2,6 +2,8 @@ import React, { useMemo, useState } from 'react';
 import { Connection } from '@solana/web3.js';
 import { useQuery } from '@tanstack/react-query';
 import { useConnection } from '@jup-ag/wallet-adapter';
+import { useAtom } from 'jotai';
+import { appProps } from 'src/library';
 
 const PERFORMANCE_SAMPLE_LIMIT = 6;
 const MIN_RECOMMENDED_TPS = 1500;
@@ -31,6 +33,8 @@ const getAvgTPS = async (connection: Connection) => {
 const useTPSMonitor = () => {
   const [tps, setTPS] = useState<number[]>([]);
   const { connection } = useConnection();
+  const [atom] = useAtom(appProps);
+  const isTerminalInDOM = atom?.integratedTargetId ? Boolean(document.getElementById(atom?.integratedTargetId)) : false;
 
   useQuery(
     ['tps-monitor'],
@@ -63,8 +67,12 @@ const useTPSMonitor = () => {
       return null;
     },
     {
-      refetchInterval: 10_000,
-      retryDelay: 2_000,
+      // ensure useQuery only runs when terminal is in DOM
+      refetchInterval: isTerminalInDOM ? 10_000 : false,
+      refetchIntervalInBackground: false,
+      // linear delay if calls fail
+      retryDelay: attempt => attempt * 2000,
+      enabled: isTerminalInDOM ? true : false,
     },
   );
 

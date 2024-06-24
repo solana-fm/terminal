@@ -7,6 +7,8 @@ import React, { PropsWithChildren, useCallback, useContext, useEffect, useState 
 import { WRAPPED_SOL_MINT } from 'src/constants';
 import { fromLamports, getAssociatedTokenAddressSync } from 'src/misc/utils';
 import { useWalletPassThrough } from './WalletPassthroughProvider';
+import { useAtom } from 'jotai';
+import { appProps } from 'src/library';
 
 const TOKEN_2022_PROGRAM_ID = new PublicKey('TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb');
 
@@ -139,6 +141,8 @@ export const TokenAccountParser = (
 const AccountsProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const { publicKey, connected } = useWalletPassThrough();
   const { connection } = useConnection();
+  const [atom] = useAtom(appProps);
+  const isTerminalInDOM = atom?.integratedTargetId ? Boolean(document.getElementById(atom?.integratedTargetId)) : false;
 
   const fetchNative = useCallback(async () => {
     if (!publicKey || !connected) return null;
@@ -200,9 +204,12 @@ const AccountsProvider: React.FC<PropsWithChildren> = ({ children }) => {
       };
     },
     {
-      enabled: Boolean(publicKey?.toString() && connected),
-      refetchInterval: 10_000,
+      // ensure useQuery only runs when terminal is in DOM
+      enabled: isTerminalInDOM ? Boolean(publicKey?.toString() && connected) : false,
+      refetchInterval: isTerminalInDOM ? 10_000 : false,
       refetchIntervalInBackground: false,
+      // linear delay if calls fail
+      retryDelay: attempt => attempt * 2000,
     },
   );
 
