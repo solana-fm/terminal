@@ -100,7 +100,7 @@ const RenderLoadableJupiter = (props: IInit) => {
     if (!loaded) {
       intervalId = setInterval(() => {
         const instance = (window as any).JupiterRenderer?.RenderJupiter;
-        console.log(instance);
+        // console.log(instance);
         if (instance) {
           setLoaded(true);
         }

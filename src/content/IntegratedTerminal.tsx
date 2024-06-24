@@ -63,7 +63,7 @@ const IntegratedTerminal = (props: {
 
   // To make sure passthrough wallet are synced
   useEffect(() => {
-    console.log(window);
+    // console.log(window);
     if (!window.Jupiter.syncProps) return;
     window.Jupiter.syncProps({ passthroughWalletContextState });
   }, [passthroughWalletContextState, props]);

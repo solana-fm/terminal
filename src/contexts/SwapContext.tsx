@@ -308,7 +308,7 @@ export const SwapContextProvider: FC<{
         if ('error' in swapResult) throw swapResult.error;
 
         if ('txid' in swapResult) {
-          console.log({ swapResult });
+          // console.log({ swapResult });
           setTxStatus({ txid: swapResult.txid, status: 'success' });
           setLastSwapResult({ swapResult, quoteResponseMeta });
         }
