@@ -127,7 +127,7 @@ const InitialScreen = ({ setIsWalletModalOpen, isWalletModalOpen }: Props) => {
       ) : null}
 
       {showUnknownToken ? (
-        <div className="absolute h-full w-full flex justify-center items-center bg-black/50 rounded-lg overflow-hidden">
+        <div className="absolute h-full w-full flex justify-center items-center dark:bg-black/50 bg-black/30 rounded-lg overflow-hidden">
           <UnknownTokenModal
             tokensInfo={[showUnknownToken]}
             onClickAccept={() => {
