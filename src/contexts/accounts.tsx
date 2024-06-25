@@ -209,7 +209,7 @@ const AccountsProvider: React.FC<PropsWithChildren> = ({ children }) => {
       refetchInterval: isTerminalInDOM ? 10_000 : false,
       refetchIntervalInBackground: false,
       // linear delay if calls fail
-      retryDelay: attempt => attempt * 2000,
+      retryDelay: attempt => attempt * 3000,
     },
   );
 

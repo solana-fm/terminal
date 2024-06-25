@@ -68,10 +68,10 @@ const useTPSMonitor = () => {
     },
     {
       // ensure useQuery only runs when terminal is in DOM
-      refetchInterval: isTerminalInDOM ? 10_000 : false,
+      refetchInterval: isTerminalInDOM ? 15_000 : false,
       refetchIntervalInBackground: false,
       // linear delay if calls fail
-      retryDelay: attempt => attempt * 2000,
+      retryDelay: attempt => attempt * 3000,
       enabled: isTerminalInDOM ? true : false,
     },
   );
