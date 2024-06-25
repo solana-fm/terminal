@@ -1,4 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
+import { useAtom } from 'jotai';
+import { appProps } from 'src/library';
 
 interface Fee {
   /**
@@ -27,6 +29,9 @@ interface MarketReferenceFee {
 }
 
 export const useReferenceFeesQuery = () => {
+  const [atom] = useAtom(appProps);
+  const isTerminalInDOM = atom?.integratedTargetId ? Boolean(document.getElementById(atom?.integratedTargetId)) : false;
+
   return useQuery(
     ['market-reference-fees'],
     async () => {
@@ -35,13 +40,15 @@ export const useReferenceFeesQuery = () => {
     },
     {
       keepPreviousData: true,
-      refetchInterval: 60_000,
+      refetchInterval: isTerminalInDOM ? 60_000 : false,
       refetchIntervalInBackground: false,
       retry: false,
       retryOnMount: false,
       refetchOnMount: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
+      // ensure useQuery only runs when terminal is in DOM
+      enabled: isTerminalInDOM ? true : false,
     },
   );
 };

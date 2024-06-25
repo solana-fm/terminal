@@ -5,6 +5,8 @@ import { splitIntoChunks } from 'src/misc/utils';
 import { useAccounts } from './accounts';
 import { useSwapContext } from './SwapContext';
 import { useTokenContext } from './TokenContextProvider';
+import { useAtom } from 'jotai';
+import { appProps } from 'src/library';
 
 const MAXIMUM_PARAM_SUPPORT = 100;
 const CACHE_EXPIRE_TIME = 1000 * 60 * 1; // 1 min
@@ -46,6 +48,8 @@ export const USDValueProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const { accounts } = useAccounts();
   const { tokenMap } = useTokenContext();
   const { fromTokenInfo, toTokenInfo } = useSwapContext();
+  const [atom] = useAtom(appProps);
+  const isTerminalInDOM = atom?.integratedTargetId ? Boolean(document.getElementById(atom?.integratedTargetId)) : false;
 
   const [cachedPrices, setCachedPrices] = useLocalStorage<ITokenUSDValue>(STORAGE_KEY, {});
   const [addresses, setAddresses] = useState<Set<string>>(new Set());
@@ -147,7 +151,9 @@ export const USDValueProvider: FC<{ children: ReactNode }> = ({ children }) => {
     },
     {
       staleTime: CACHE_EXPIRE_TIME,
-      refetchInterval: CACHE_EXPIRE_TIME,
+      refetchInterval: isTerminalInDOM ? CACHE_EXPIRE_TIME : false,
+      // ensure useQuery only runs when terminal is in DOM
+      enabled: isTerminalInDOM ? true : false,
     },
   );
 
