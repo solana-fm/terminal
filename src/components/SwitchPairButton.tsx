@@ -9,7 +9,7 @@ const IconSwitchPairDark = () => (
   //     fillOpacity="0.8"
   //   />
   // </svg>
-  <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrows-down-up group-hover:!stroke-purple-500/80" width="14" height="14" viewBox="0 0 24 24" stroke-width="1.5" stroke="#808080" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrows-down-up stroke-grey-400 group-hover:!stroke-purple-500/80" width="14" height="14" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
     <path d="M17 3l0 18" />
     <path d="M10 18l-3 3l-3 -3" />
