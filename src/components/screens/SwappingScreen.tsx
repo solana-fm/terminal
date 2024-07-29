@@ -177,7 +177,6 @@ const SwappingScreen = () => {
       <>
         <div className="flex justify-center mt-12">
           <div className="absolute top-[52px] bg-[#23C1AA] bg-opacity-[15%] rounded-full w-20 h-20 flex justify-center items-center animate-pulse" />
-
           <div className="h-[56px] w-[56px] bg-white rounded-full">
             <SuccessIcon />
           </div>
